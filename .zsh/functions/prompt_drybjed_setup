@@ -1,0 +1,171 @@
+autoload -U zgitinit && zgitinit
+
+prompt_drybjed_help () {
+  cat <<'EOF'
+
+  prompt drybjed
+
+EOF
+}
+
+# Determine the time since last commit.
+# Source: https://github.com/pengwynn/dotfiles/
+function prompt_drybjed_scm_commit_time() {
+	local -A pc
+
+	pc[punc]="%{${fg_bold[black]}%}"
+	pc[neutral]="%{${reset_color}%}"
+	pc[short]="%{${fg[cyan]}%}"
+	pc[medium]="%{${fg[yellow]}%}"
+	pc[long]="%{${fg[red]}%}"
+
+	if git rev-parse --git-dir > /dev/null 2>&1; then
+
+		# Only proceed if there is actually a commit.
+		if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
+			# Get the last commit.
+			last_commit=`git log --date=local --pretty=format:'%at' -1 2> /dev/null`
+			now=`date +%s`
+			seconds_since_last_commit=$(($now - $last_commit))
+
+			# Totals
+			MINUTES=$(($seconds_since_last_commit / 60))
+			HOURS=$(($seconds_since_last_commit/3600))
+
+			# Sub-hours and sub-minutes
+			DAYS=$(($seconds_since_last_commit / 86400))
+			SUB_HOURS=$(($HOURS % 24))
+			SUB_MINUTES=$(($MINUTES % 60))
+
+			if [[ -n $(git status -s 2> /dev/null) ]]; then
+				if [ "$MINUTES" -gt 30 ]; then
+					COLOR="$pc[long]"
+				elif [ "$MINUTES" -gt 10 ]; then
+					COLOR="$pc[medium]"
+				else
+					COLOR="$pc[short]"
+				fi
+			else
+				COLOR="$pc[neutral]"
+			fi
+
+			if [[ -n $(git status -s 2> /dev/null) ]]; then
+				if [ "$HOURS" -gt 24 ]; then
+					echo " $pc[punc]±$COLOR${DAYS}d"
+				elif [ "$MINUTES" -gt 60 ]; then
+					echo " $pc[punc]±$COLOR${HOURS}h${SUB_MINUTES}m"
+				else
+					echo " $pc[punc]±$COLOR${MINUTES}m"
+				fi
+			fi
+		fi
+	fi
+}
+
+
+function prompt_drybjed_scm_branch() {
+	zgit_isgit || return
+
+	local -A pc
+	pc[scm_branch]="%{${fg_bold[white]}%}"
+	pc[scm_commitid]="%{${fg_bold[yellow]}%}"
+	pc[scm_status_dirty]="%{${fg_bold[red]}%}"
+	pc[scm_status_staged]="%{${fg_bold[green]}%}"
+
+	echo -n " $pc[scm_branch]$(zgit_head)"
+
+	if zgit_inworktree; then
+		if ! zgit_isindexclean; then
+			echo -n "$pc[scm_status_staged]+"
+		fi
+
+		local -a dirty
+		if ! zgit_isworktreeclean; then
+			dirty+='!'
+		fi
+
+		if zgit_hasunmerged; then
+			dirty+='*'
+		fi
+
+		if zgit_hasuntracked; then
+			dirty+='?'
+		fi
+
+		if [ $#dirty -gt 0 ]; then
+			echo -n "$pc[scm_status_dirty]${(j::)dirty}"
+		fi
+	fi
+	echo $pc[reset]
+}
+
+function prompt_drybjed_setup() {
+	local verbose
+	if [[ $TERM == screen* ]] && [ -n "$STY" ]; then
+		verbose=
+	else
+		verbose=1
+	fi
+
+	local -A pc
+	pc[default]='%{${reset_color}%}'
+	pc[sudouser]='%{${fg_no_bold[magenta]}%}'
+	pc[user]='%{${fg_no_bold[green]}%}'
+	[ -n "${SSH_CONNECTION}" ] && pc[host]='%{${fg_bold[cyan]}%}' || pc[host]='%{${fg_no_bold[cyan]}%}'
+	pc[punc]='%{${reset_color}${fg_bold[black]}%}'
+	pc[line]='%{${fg[yellow]}%}'
+	pc[hist]='%{green%}'
+	pc[path]='%{${fg_bold[blue]}%}'
+	pc[git]='magenta'
+	pc[shortpath]='default'
+	pc[rc]='%{${fg_no_bold[red]}%}'
+	pc[root]='%{${fg_bold[red]}%}'
+	pc[%]='%{${fg_bold[default]}%}'
+	pc[usercmd]='%{${fg_no_bold[green]}%}'
+	pc[rootcmd]='%{${fg_bold[red]}%}'
+	pc[bg]='%{${fg_bold[yellow]}%}'
+	pc[reset]='%{${reset_color}%}'
+
+	PROMPT=
+	[ -n "$SUDO_USER" ] && PROMPT+="$pc[sudouser]${SUDO_USER}$pc[punc]:$pc[reset]"
+	PROMPT+="%(!.$pc[root].$pc[user])%n$pc[punc]@$pc[host]%m$pc[reset]"
+	#PROMPT+="$pc[punc].$pc[line]%l$pc[reset]"
+	PROMPT+=" $pc[path]%25<...<%\$(prompt_drybjed_gitpath)~%<<%(1/.$pc[punc]/.)"
+	PROMPT+="\$(prompt_drybjed_scm_branch)"
+	PROMPT+="\$(prompt_drybjed_scm_commit_time)"
+	PROMPT+="%(1j. $pc[bg]bg$pc[reset].)"
+	PROMPT+="%(?.. $pc[rc]%1v$pc[reset])"
+	PROMPT+=" %(!.$pc[root].$pc[%])%#$pc[reset] "
+
+	PROMPT+="%{%(!.$pc[rootcmd].$pc[usercmd])%}"
+
+	RPROMPT=
+
+	export PROMPT RPROMPT
+	add-zsh-hook precmd prompt_drybjed_precmd
+	add-zsh-hook preexec prompt_drybjed_preexec
+}
+
+function prompt_drybjed_precmd() {
+	local ex=$?
+	psvar=()
+
+	if [[ $ex -ge 128 ]]; then
+		sig=$signals[$ex-127]
+		psvar[1]="sig${(L)sig}"
+	else
+		psvar[1]="$ex"
+	fi
+}
+
+function prompt_drybjed_preexec() {
+	tput sgr0
+}
+
+function prompt_drybjed_gitpath() {
+	zgit_isgit && echo 1
+}
+
+prompt_drybjed_setup "$@"
+
+# vim:ft=zsh

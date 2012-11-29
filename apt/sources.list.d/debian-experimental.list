@@ -1,0 +1,8 @@
+# /etc/apt/sources.list.d/debian-experimental.list
+
+# APT repositories for Debian GNU/Linux - experimental distribution
+
+# Main repository
+  deb		http://ftp.pl.debian.org/debian experimental main contrib non-free
+  #deb-src	http://ftp.pl.debian.org/debian experimental main contrib non-free
+

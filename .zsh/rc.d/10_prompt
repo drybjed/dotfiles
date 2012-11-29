@@ -1,0 +1,9 @@
+setopt promptsubst
+
+# Enable colors
+[ $TERM != "dumb" ] && autoload -U colors && colors
+
+autoload -U promptinit
+promptinit
+
+# vim:set ft=zsh:

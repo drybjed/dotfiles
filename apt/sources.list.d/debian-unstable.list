@@ -1,0 +1,8 @@
+# /etc/apt/sources.list.d/debian-unstable.list
+
+# APT repositories for Debian GNU/Linux - unstable distribution
+
+# Main repository
+  deb		http://ftp.pl.debian.org/debian unstable main contrib non-free
+  #deb-src	http://ftp.pl.debian.org/debian unstable main contrib non-free
+

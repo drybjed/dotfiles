@@ -1,0 +1,20 @@
+#!/bin/sh
+
+add_path_component()
+{
+    [ -d $1 ] || return
+    echo $PATH | grep -Fq "$1" && return
+    export PATH=$1:$PATH
+}
+
+PATH="/usr/local/bin:/usr/bin:/bin"
+export PATH
+
+[ "$EUID" -ne 0 ] && add_path_component /usr/games
+[ "$EUID" -ne 0 ] || add_path_component /opt/bin
+[ "$EUID" -ne 0 ] || add_path_component /sbin
+[ "$EUID" -ne 0 ] || add_path_component /usr/sbin
+[ "$EUID" -ne 0 ] || add_path_component /usr/local/sbin
+add_path_component $HOME/bin
+add_path_component $HOME/.local/bin
+
