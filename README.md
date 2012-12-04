@@ -29,6 +29,6 @@ Many parts of these dotfiles are not my work, here's a list of people who
 wrote the code (or had it in their dotfiles) which you can find in this
 repository. If you find your code without proper credit, let me know.
 
+* GRML Team - http://grml.org/
 * Joshua T. Corbin - https://github.com/jcorbin
 * Wynn Netherland - https://github.com/pengwynn
-
