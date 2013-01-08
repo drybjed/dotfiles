@@ -1,0 +1,5 @@
+# per-user history based on $SUDO_USER
+
+[[ -n ${SUDO_USER} ]] && HISTFILE=${HOME}/.zsh_history_${SUDO_USER}
+
+# vim:ft=zsh
