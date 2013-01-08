@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Try to fix broken $TERM
 if [ -n "$TERM" ]; then if which tput &>/dev/null; then while true; do
     tput longname &>/dev/null && break

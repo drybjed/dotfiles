@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Editor
-export EDITOR=vim

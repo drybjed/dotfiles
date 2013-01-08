@@ -1,4 +1,4 @@
-#!/bin/sh
+# Setup $PATH
 
 add_path_component()
 {
@@ -18,3 +18,4 @@ export PATH
 add_path_component $HOME/bin
 add_path_component $HOME/.local/bin
 
+# vim:ft=zsh

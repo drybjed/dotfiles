@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Pager
 if which less>/dev/null; then
 	export PAGER=$(which less)
