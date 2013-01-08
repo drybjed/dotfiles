@@ -1,0 +1,162 @@
+# Keybindings; taken from grml-zsh-config
+
+if [[ "$TERM" != emacs ]] ; then
+    [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
+    [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
+    [[ -z "$terminfo[kend]"  ]] || bindkey -M emacs "$terminfo[kend]"  end-of-line
+    [[ -z "$terminfo[kdch1]" ]] || bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
+    [[ -z "$terminfo[khome]" ]] || bindkey -M vicmd "$terminfo[khome]" vi-beginning-of-line
+    [[ -z "$terminfo[kend]"  ]] || bindkey -M vicmd "$terminfo[kend]"  vi-end-of-line
+    [[ -z "$terminfo[cuu1]"  ]] || bindkey -M viins "$terminfo[cuu1]"  vi-up-line-or-history
+    [[ -z "$terminfo[cuf1]"  ]] || bindkey -M viins "$terminfo[cuf1]"  vi-forward-char
+    [[ -z "$terminfo[kcuu1]" ]] || bindkey -M viins "$terminfo[kcuu1]" vi-up-line-or-history
+    [[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" vi-down-line-or-history
+    [[ -z "$terminfo[kcuf1]" ]] || bindkey -M viins "$terminfo[kcuf1]" vi-forward-char
+    [[ -z "$terminfo[kcub1]" ]] || bindkey -M viins "$terminfo[kcub1]" vi-backward-char
+    # ncurses stuff:
+    [[ "$terminfo[kcuu1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" vi-up-line-or-history
+    [[ "$terminfo[kcud1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" vi-down-line-or-history
+    [[ "$terminfo[kcuf1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
+    [[ "$terminfo[kcub1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
+    [[ "$terminfo[khome]" == $'\eO'* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
+    [[ "$terminfo[kend]"  == $'\eO'* ]] && bindkey -M viins "${terminfo[kend]/O/[}"  end-of-line
+    [[ "$terminfo[khome]" == $'\eO'* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
+    [[ "$terminfo[kend]"  == $'\eO'* ]] && bindkey -M emacs "${terminfo[kend]/O/[}"  end-of-line
+fi
+
+## keybindings (run 'bindkeys' for details, more details via man zshzle)
+# use emacs style per default:
+bindkey -e
+# use vi style:
+# bindkey -v
+
+## beginning-of-line OR beginning-of-buffer OR beginning of history
+## by: Bart Schaefer <schaefer@brasslantern.com>, Bernhard Tittelbach
+beginning-or-end-of-somewhere() {
+    local hno=$HISTNO
+    if [[ ( "${LBUFFER[-1]}" == $'\n' && "${WIDGET}" == beginning-of* ) || \
+      ( "${RBUFFER[1]}" == $'\n' && "${WIDGET}" == end-of* ) ]]; then
+        zle .${WIDGET:s/somewhere/buffer-or-history/} "$@"
+    else
+        zle .${WIDGET:s/somewhere/line-hist/} "$@"
+        if (( HISTNO != hno )); then
+            zle .${WIDGET:s/somewhere/buffer-or-history/} "$@"
+        fi
+    fi
+}
+zle -N beginning-of-somewhere beginning-or-end-of-somewhere
+zle -N end-of-somewhere beginning-or-end-of-somewhere
+
+
+#if [[ "$TERM" == screen ]] ; then
+
+## with HOME/END, move to beginning/end of line (on multiline) on first keypress
+## to beginning/end of buffer on second keypress
+## and to beginning/end of history on (at most) the third keypress
+# terminator & non-debian xterm
+bindkey '\eOH' beginning-of-somewhere  # home
+bindkey '\eOF' end-of-somewhere        # end
+# freebsd console
+bindkey '\e[H' beginning-of-somewhere   # home
+bindkey '\e[F' end-of-somewhere         # end
+# xterm,gnome-terminal,quake,etc
+bindkey '^[[1~' beginning-of-somewhere  # home
+bindkey '^[[4~' end-of-somewhere        # end
+# if terminal type is set to 'rxvt':
+bindkey '\e[7~' beginning-of-somewhere  # home
+bindkey '\e[8~' end-of-somewhere        # end
+#fi
+
+bindkey '\e[A'  up-line-or-search       # cursor up
+bindkey '\e[B'  down-line-or-search     # <ESC>-
+
+## alt-backspace is already the default for backwards-delete-word
+## let's also set alt-delete for deleting current word (right of cursor)
+#k# Kill right-side word
+bindkey "3~" delete-word
+
+## use Ctrl-left-arrow and Ctrl-right-arrow for jumping to word-beginnings on the CL
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+## the same for alt-left-arrow and alt-right-arrow
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+
+# Search backward in the history for a line beginning with the current
+# line up to the cursor and move the cursor to the end of the line then
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end  history-search-end
+#k# search history backward for entry beginning with typed text
+bindkey '^xp'   history-beginning-search-backward-end
+#k# search history forward for entry beginning with typed text
+bindkey '^xP'   history-beginning-search-forward-end
+#k# search history backward for entry beginning with typed text
+bindkey "\e[5~" history-beginning-search-backward-end # PageUp
+#k# search history forward for entry beginning with typed text
+bindkey "\e[6~" history-beginning-search-forward-end  # PageDown
+
+# bindkey -s '^L' "|less\n"             # ctrl-L pipes to less
+# bindkey -s '^B' " &\n"                # ctrl-B runs it in the background
+
+# insert unicode character
+# usage example: 'ctrl-x i' 00A7 'ctrl-x i' will give you an §
+# See for example http://unicode.org/charts/ for unicode characters code
+autoload insert-unicode-char
+zle -N insert-unicode-char
+#k# Insert Unicode character
+bindkey '^Xi' insert-unicode-char
+
+#m# k Shift-tab Perform backwards menu completion
+if [[ -n "$terminfo[kcbt]" ]]; then
+    bindkey "$terminfo[kcbt]" reverse-menu-complete
+elif [[ -n "$terminfo[cbt]" ]]; then # required for GNU screen
+    bindkey "$terminfo[cbt]"  reverse-menu-complete
+fi
+
+## toggle the ,. abbreviation feature on/off
+# NOABBREVIATION: default abbreviation-state
+#                 0 - enabled (default)
+#                 1 - disabled
+NOABBREVIATION=${NOABBREVIATION:-0}
+
+grml_toggle_abbrev() {
+    if (( ${NOABBREVIATION} > 0 )) ; then
+        NOABBREVIATION=0
+    else
+        NOABBREVIATION=1
+    fi
+}
+
+zle -N grml_toggle_abbrev
+bindkey '^xA' grml_toggle_abbrev
+
+# add a command line to the shells history without executing it
+commit-to-history() {
+    print -s ${(z)BUFFER}
+    zle send-break
+}
+zle -N commit-to-history
+bindkey "^x^h" commit-to-history
+
+# only slash should be considered as a word separator:
+slash-backward-kill-word() {
+    local WORDCHARS="${WORDCHARS:s@/@}"
+    # zle backward-word
+    zle backward-kill-word
+}
+zle -N slash-backward-kill-word
+
+#k# Kill left-side word or everything up to next slash
+bindkey '\ev' slash-backward-kill-word
+#k# Kill left-side word or everything up to next slash
+bindkey '\e^h' slash-backward-kill-word
+#k# Kill left-side word or everything up to next slash
+bindkey '\e^?' slash-backward-kill-word
+
+# use the new *-pattern-* widgets for incremental history search
+bindkey '^r' history-incremental-pattern-search-backward
+bindkey '^s' history-incremental-pattern-search-forward
+
+# vim:ft=zsh
