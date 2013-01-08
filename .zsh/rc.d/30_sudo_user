@@ -1,0 +1,23 @@
+# su doesn't have a feature similar to sudo ($SUDO_USER), which sometimes
+# is useful, so lets make one from scratch. It will be useful later for
+# per-user history and prompt. Also, take special care of tmux, so we won't
+# have useless redundant $SUDO_USER at $SHLVL=2 in tmux
+# Of course, 'su -' can't be remedied in this case.
+if [[ ${SHLVL} -eq 1 ]] && [[ -z ${TMUX} ]] && [[ -z ${SAVED_SU_USER} ]]; then
+        export SAVED_SU_USER=${USER}
+fi
+
+if [[ ${SHLVL} -eq 1 ]] && [[ -n ${TMUX} ]] && [[ -n ${SAVED_SU_USER} ]]; then
+        export SAVED_FROM_TMUX=${USER}
+elif [[ ${SHLVL} -gt 1 ]] && [[ -z ${TMUX} ]] && [[ -n ${SAVED_SU_USER} ]] && [[ ${SAVED_SU_USER} != ${USER} ]]; then
+        export SUDO_USER=${SAVED_SU_USER}
+        export SAVED_SU_USER=${USER}
+elif [[ ${SHLVL} -gt 2 ]] && [[ -n ${TMUX} ]] && [[ -z ${SAVED_FROM_TMUX} ]] && [[ -n ${SAVED_SU_USER} ]] && [[ ${SAVED_SU_USER} != ${USER} ]]; then
+        export SUDO_USER=${SAVED_SU_USER}
+        export SAVED_SU_USER=${USER}
+elif [[ ${SHLVL} -gt 1 ]] && [[ -n ${SAVED_FROM_TMUX} ]] && [[ -n ${SAVED_SU_USER} ]] && [[ ${SAVED_SU_USER} != ${USER} ]]; then
+        export SUDO_USER=${SAVED_SU_USER}
+        export SAVED_SU_USER=${USER}
+fi
+
+# vim:ft=zsh
