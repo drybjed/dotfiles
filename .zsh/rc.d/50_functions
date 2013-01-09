@@ -1,0 +1,17 @@
+# Simple user logger: run 'ulog' alone to display last entries,
+# run 'ulog some text' to write the text in a logfile.
+function ulog () {
+        local ulog_file="${HOME}/.zsh_user_log"
+
+        [[ ! -f "${ulog_file}" ]] && touch ${ulog_file}
+        if [[ -z "$@" ]] ; then
+                tail -n 5 ${ulog_file}
+        else
+                [[ -z "$SUDO_USER" ]] && ulog_user=${USER} || ulog_user=${SUDO_USER}
+                curdate=`date "+%b %d %H:%M"`
+		pwd=$(pwd)
+                echo -e "${curdate} ${ulog_user} ${pwd}: $@" >> ${ulog_file}
+        fi
+}
+
+# vim:ft=zsh
