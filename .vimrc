@@ -2,29 +2,33 @@
 
 " Vundle support				{{{
 " http://github.com/gmarik/vundle
-set nocompatible
-filetype off  " required!
+" Setup: git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" vim: :BundleInstall
 
-set rtp+=~/.vim/bundle/vundle/ 
-call vundle#rc()
+if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
+    set nocompatible
+    filetype off  " required!
 
-" List of bundles {{{
-" github repositories
-Bundle "gmarik/vundle"
-Bundle "Raimondi/YAIFA"
+    set rtp+=~/.vim/bundle/vundle/ 
+    call vundle#rc()
 
-" github.com/vim-scripts repositories
-Bundle "css_color.vim"
-Bundle "darkburn"
-Bundle "dhcpd.vim"
-Bundle "EasyMotion"
-Bundle "interfaces"
-Bundle "nginx.vim"
-Bundle "openvpn"
-Bundle "snipMate"
-" }}}
+    " List of bundles {{{
+    " github repositories
+    Bundle "gmarik/vundle"
+    Bundle "Raimondi/YAIFA"
 
-" End of vundle support			}}}
+    " github.com/vim-scripts repositories
+    Bundle "css_color.vim"
+    Bundle "darkburn"
+    Bundle "dhcpd.vim"
+    Bundle "EasyMotion"
+    Bundle "interfaces"
+    Bundle "nginx.vim"
+    Bundle "openvpn"
+    Bundle "snipMate"
+    " }}}
+
+endif " }}}
 
 filetype plugin indent on
 
