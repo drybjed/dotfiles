@@ -16,6 +16,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     " github repositories
     Bundle "gmarik/vundle"
     Bundle "Raimondi/YAIFA"
+    Bundle 'tpope/vim-fugitive.git'
 
     " github.com/vim-scripts repositories
     Bundle "css_color.vim"
