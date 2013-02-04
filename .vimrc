@@ -73,6 +73,11 @@ if has ("syntax")
     match ExtraWhitespace2 /\s\+$\| \+\ze\t/
     " }}}2
 
+    " Use darkburn colorscheme for dark backgrounds {{{
+    if has("gui_running") || &t_Co >= 256 && &bg ==? "dark" && filereadable(expand("~/.vim/bundle/darkburn/colors/darkburn.vim"))
+        colorscheme darkburn
+    endif " }}}
+
 endif " }}}
 
 " Source a local configuration file if available		{{{
