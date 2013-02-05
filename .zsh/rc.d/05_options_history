@@ -1,6 +1,6 @@
 setopt append_history extended_history hist_ignore_dups hist_ignore_space
 setopt hist_no_functions hist_no_store hist_reduce_blanks hist_verify
-setopt no_share_history
+setopt no_share_history hist_allow_clobber
 
 HISTSIZE=5000
 SAVEHIST=10000
