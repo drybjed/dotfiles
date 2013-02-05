@@ -17,3 +17,7 @@ setopt unset
 setopt noclobber
 setopt list_packed
 
+MAILCHECK=30       # mailchecks
+REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds
+watch=(notme root) # watch for everyone but me and root
+
