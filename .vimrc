@@ -15,6 +15,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     " List of bundles {{{
     " github repositories
     Bundle "gmarik/vundle"
+    Bundle "nathanaelkane/vim-indent-guides"
     Bundle "Raimondi/YAIFA"
     Bundle 'tpope/vim-fugitive.git'
 
