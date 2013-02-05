@@ -1,5 +1,34 @@
 # zsh aliases
 
+# do we have GNU ls with color-support?
+if ls --help 2>/dev/null | grep -- --color= >/dev/null && [[ "$TERM" != dumb ]] ; then
+    #a1# execute \kbd{@a@}:\quad ls with colors
+    alias ls='ls -b -CF --color=auto'
+    #a1# execute \kbd{@a@}:\quad list all files, with colors
+    alias la='ls -la --color=auto'
+    #a1# long colored list, without dotfiles (@a@)
+    alias ll='ls -l --color=auto'
+    #a1# long colored list, human readable sizes (@a@)
+    alias lh='ls -hAl --color=auto'
+    #a1# List files, append qualifier to filenames \\&\quad(\kbd{/} for directories, \kbd{@} for symlinks ...)
+    alias l='ls -lF --color=auto'
+else
+    alias ls='ls -b -CF'
+    alias la='ls -la'
+    alias ll='ls -l'
+    alias lh='ls -hAl'
+    alias l='ls -lF'
+fi
+
+alias mdstat='cat /proc/mdstat'
+alias ...='cd ../../'
+
+# generate alias named "$KERNELVERSION-reboot" so you can use boot with kexec:
+if [[ -x /sbin/kexec ]] && [[ -r /proc/cmdline ]] ; then
+    alias "$(uname -r)-reboot"="kexec -l --initrd=/boot/initrd.img-"$(uname -r)" --command-line=\"$(cat /proc/cmdline)\" /boot/vmlinuz-"$(uname -r)""
+fi
+
+
 alias cp='nocorrect cp -iv'
 alias mkdir='nocorrect mkdir -v'
 alias mv='nocorrect mv -iv'
@@ -21,4 +50,9 @@ check_com -c mysql && alias mysql='mysql --safe-updates'
 # Exit from the console if using startx to run the X session
 [[ -z "$DISPLAY" ]] && alias startx='exec /usr/bin/startx'
 
+check_com t &>/dev/null || alias t='tmux'
+check_com s &>/dev/null || alias s='ssh'
+
+# get top 10 shell commands:
+alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
