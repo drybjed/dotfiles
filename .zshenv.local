@@ -1,0 +1,3 @@
+# Make vim use dark background by default
+export LC_VIM_HACK_COLORFGBG=dark
+
