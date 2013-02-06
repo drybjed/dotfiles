@@ -154,3 +154,7 @@ done; unset compcom
 # see upgrade function in this file
 compdef _hosts upgrade
 
+# Colorized partial completion
+# http://www.reddit.com/r/zsh/comments/msps0/color_partial_tab_completions_in_zsh/
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==02=00}:${(s.:.)LS_COLORS}")';
+
