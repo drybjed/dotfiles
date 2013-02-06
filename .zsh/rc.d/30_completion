@@ -1,5 +1,8 @@
 # zsh completion (many taken from grml-zsh)
 
+# Initialize completion engine
+autoload -Uz compinit && compinit
+
 # allow one error for every three characters typed in approximate completer
 zstyle ':completion:*:approximate:'    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
