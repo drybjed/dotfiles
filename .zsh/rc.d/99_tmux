@@ -1,0 +1,26 @@
+# tmux session wrapper for ssh
+
+# For below code to work correctly, you need to add this in your .tmux.conf (on
+# localhost):
+#
+# set-environment -g LC_TMUX_SESSION 1
+#
+# Without it you risk running nested tmux sessions. You have been warned.
+#
+# If you want to bypass tmux at ssh connection, set $LC_TMUX_SESSION=1 before
+# the connection, simething like:
+#
+# LC_TMUX_SESSION=1 ssh <remotehost>
+
+if check_com -c tmux; then
+	# We are in ssh connection but not in a tmux session
+	if [ -n "$SSH_CONNECTION" -a -z "$LC_TMUX_SESSION" -a -z "$TMUX" ] ; then
+		if tmux -q has-session -t ssh ; then
+			exec tmux -q attach-session -t ssh
+		else
+			exec tmux -q new-session -s ssh
+		fi
+	fi
+fi
+
+# vim:ft=zsh
