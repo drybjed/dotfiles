@@ -20,7 +20,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'tpope/vim-fugitive.git'
 
     " github.com/vim-scripts repositories
-    Bundle "css_color.vim"
+    "Bundle "css_color.vim"
     Bundle "darkburn"
     Bundle "dhcpd.vim"
     Bundle "EasyMotion"
