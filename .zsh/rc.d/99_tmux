@@ -13,8 +13,8 @@
 # LC_TMUX_SESSION=1 ssh <remotehost>
 
 if check_com -c tmux; then
-	# We are in ssh connection but not in a tmux session
-	if [ -n "$SSH_CONNECTION" -a -z "$LC_TMUX_SESSION" -a -z "$TMUX" ] ; then
+	# We are in ssh connection but not in a tmux session and want to be in it
+	if [ -n "$SSH_CONNECTION" -a -n "$LC_USE_TMUX" -a -z "$LC_TMUX_SESSION" -a -z "$TMUX" ] ; then
 		if tmux -q has-session -t ssh ; then
 			exec tmux -q attach-session -t ssh
 		else

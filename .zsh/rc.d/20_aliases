@@ -51,7 +51,7 @@ check_com -c mysql && alias mysql='mysql --safe-updates'
 [[ -z "$DISPLAY" ]] && alias startx='exec /usr/bin/startx'
 
 check_com t &>/dev/null || alias t='tmux'
-check_com s &>/dev/null || alias s='ssh'
+check_com s &>/dev/null || alias s='LC_USE_TMUX=1 ssh'
 
 # get top 10 shell commands:
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
