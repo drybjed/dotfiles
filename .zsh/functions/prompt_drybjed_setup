@@ -112,7 +112,7 @@ function prompt_drybjed_setup() {
 	pc[sudouser]='%{${fg_no_bold[magenta]}%}'
 	pc[user]='%{${fg_no_bold[green]}%}'
 	[ -n "${SSH_CONNECTION}" ] && pc[host]='%{${fg_bold[cyan]}%}' || pc[host]='%{${fg_no_bold[cyan]}%}'
-	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && pc[at]='%{${reset_color}${fg[blue]}%}' || pc[at]='%{${reset_color}${fg_bold[black]}%}'
+	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && pc[x11]='%{${fg_bold[magenta]}%}'
 	pc[punc]='%{${reset_color}${fg_bold[black]}%}'
 	pc[line]='%{${fg[yellow]}%}'
 	pc[hist]='%{green%}'
@@ -130,8 +130,9 @@ function prompt_drybjed_setup() {
 	PROMPT=
 	[ -n "$SUDO_USER" ] && PROMPT+="$pc[sudouser]${SUDO_USER}$pc[punc]:$pc[reset]"
 	PROMPT+="%(!.$pc[root].$pc[user])%n$pc[reset]"
-	[ -n "${SSH_CONNECTION}" ] && PROMPT+="$pc[at]@$pc[host]%m$pc[reset]"
+	[ -n "${SSH_CONNECTION}" ] && PROMPT+="$pc[punc]@$pc[host]%m$pc[reset]"
 	#PROMPT+="$pc[punc].$pc[line]%l$pc[reset]"
+	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && PROMPT+="$pc[x11]+$pc[reset]"
 	PROMPT+=" $pc[path]%25<...<%\$(prompt_drybjed_gitpath)~%<<%(1/.$pc[punc]/.)"
 	PROMPT+="\$(prompt_drybjed_scm_branch)"
 	PROMPT+="\$(prompt_drybjed_scm_commit_time)"
