@@ -1,0 +1,7 @@
+# /etc/apt/sources.list.d/debian-stable-backports.list
+
+# APT repositories for Debian Backports for Stable
+# More information: http://backports.debian.org/
+
+  deb		http://ftp.pl.debian.org/debian/ stable-backports main contrib non-free
+
