@@ -18,6 +18,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle "nathanaelkane/vim-indent-guides"
     Bundle "Raimondi/YAIFA"
     Bundle 'tpope/vim-fugitive.git'
+    Bundle 'jamessan/vim-gnupg'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
