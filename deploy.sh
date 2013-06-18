@@ -17,3 +17,7 @@ ln -s $dotdir/.zshrc $HOME/.zshrc
 ln -s $dotdir/.vimrc $HOME/.vimrc
 ln -s $dotdir/.tmux.conf $HOME/.tmux.conf
 
+if [[ "$1" = "dark" ]]; then
+	ln -s $dotdir/.zshenv.local $HOME/.zshenv.local
+fi
+
