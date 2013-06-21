@@ -19,6 +19,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle "Raimondi/YAIFA"
     Bundle 'tpope/vim-fugitive.git'
     Bundle 'jamessan/vim-gnupg'
+    Bundle 'merlinrebrovic/focus.vim'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
