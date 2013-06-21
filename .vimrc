@@ -211,6 +211,24 @@ if has ("syntax")
 
 endif " }}}
 
+" Incerase/decrease ident of selected lines with < and > {{{1
+" http://vim.wikia.com/wiki/Shifting_blocks_visually
+vnoremap < <gv
+vnoremap > >gv
+
+" Move cursor by display lines when wrapping {{{1
+" http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
 " HTML/XHTML/PHP editing		{{{1
 " Useful HTML shortcuts			{{{2
 " http://stripey.com/vim/vimrc.html
