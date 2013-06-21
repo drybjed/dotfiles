@@ -51,7 +51,7 @@ set wildmode=list:longest,full
 set wildmenu
 set history=9999
 set mouse=a
-set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+"set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 set hidden
 set gdefault
 set scrolloff=2
