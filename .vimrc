@@ -67,7 +67,7 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-set listchars=tab:›\ ,trail:·,eol:¬
+"set listchars=tab:›\ ,trail:·,eol:¬
 set formatoptions=1
 set backspace=indent,eol,start
 set autoindent
