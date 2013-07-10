@@ -1,0 +1,17 @@
+! ~/.Xresources
+
+! Xft settings
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+! xterm
+XTerm*faceName:		Inconsolata:size=10
+XTerm*utf8:		2
+XTerm*termName:		xterm-256color
+XTerm*saveLines:	4096
+XTerm*borderWidth:	0
+XTerm*geometry:		140x40
+
