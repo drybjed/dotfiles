@@ -21,6 +21,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'jamessan/vim-gnupg'
     Bundle 'merlinrebrovic/focus.vim'
     Bundle 'mhinz/vim-signify'
+    Bundle 'itchyny/lightline.vim'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
@@ -47,7 +48,7 @@ set showcmd
 set showmatch
 set nostartofline
 set modeline
-set laststatus=1
+set laststatus=2
 set display+=lastline
 set wildmode=list:longest,full
 set wildmenu
