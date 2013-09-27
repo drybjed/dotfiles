@@ -2,7 +2,7 @@ CURDIR ?= $(.CURDIR)
 
 LN_FLAGS = -sfn
 
-.PHONY: .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark
+.PHONY: .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark mc-ini
 
 COLOR = \033[32;01m
 NO_COLOR = \033[0m
@@ -67,6 +67,9 @@ vim-vundle:
 		~/.vim/bundle/vundle && \
 		vim +BundleInstall +qall)
 
+mc-ini:
+	@echo "Copying ~/.config/mc/ini"
+	@test ! -e ~/.config/mc/ini && cp $(CURDIR)/.config/mc/ini ~/.config/mc/ini
 
 get:
 	@test ! -d ~/.dotfiles && git clone --quiet git://github.com/drybjed/dotfiles.git ~/.dotfiles/
