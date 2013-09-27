@@ -27,7 +27,7 @@ help:
 
 all: install vim-vundle
 
-install: .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc
+install: .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini
 
 dark: .zshenv.local
 
