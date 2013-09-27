@@ -69,6 +69,7 @@ vim-vundle:
 
 mc-ini:
 	@echo "Copying ~/.config/mc/ini"
+	@mkdir -p ~/.config/mc
 	@test ! -e ~/.config/mc/ini && cp $(CURDIR)/.config/mc/ini ~/.config/mc/ini
 
 get:
