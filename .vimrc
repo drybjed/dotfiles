@@ -220,6 +220,10 @@ endif " }}}
 vnoremap < <gv
 vnoremap > >gv
 
+" Settings for vim-gnupg {{{1
+let g:GPGPreferArmor=1
+let g:GPGPreferSign=1
+
 " Move cursor by display lines when wrapping {{{1
 " http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 nnoremap j gj
