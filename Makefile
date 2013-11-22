@@ -27,7 +27,7 @@ help:
 
 all: install vim-vundle
 
-install: .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini
+install: .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini gpg
 
 dark: .zshenv.local
 
@@ -71,6 +71,11 @@ mc-ini:
 	@echo "Copying ~/.config/mc/ini"
 	@mkdir -p ~/.config/mc
 	@test ! -e ~/.config/mc/ini && cp $(CURDIR)/.config/mc/ini ~/.config/mc/ini
+
+gpg:
+	@echo "Symlinking ~/.gnupg/gpg.conf"
+	@mkdir -m 700 -p ~/.gnupg
+	@test ! -e ~/.gnupg/gpg.conf && ln $(LN_FLAGS) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 get:
 	@test ! -d ~/.dotfiles && git clone --quiet git://github.com/drybjed/dotfiles.git ~/.dotfiles/
