@@ -46,7 +46,7 @@ set nocompatible
 set autoread
 set noautowrite
 set ruler
-set showmode
+set noshowmode
 set showcmd
 set showmatch
 set nostartofline
@@ -61,7 +61,7 @@ set mouse=a
 set hidden
 set gdefault
 set scrolloff=2
-set cmdheight=2
+set cmdheight=1
 set sessionoptions=blank,buffers,curdir,folds,help,options,resize,tabpages,winpos,winsize
 set directory=.,~/tmp,/var/tmp
 set viminfo='150,<1000,s100,r/tmp,r/mnt,r/media
