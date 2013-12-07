@@ -225,6 +225,17 @@ vnoremap > >gv
 let g:GPGPreferArmor=1
 let g:GPGPreferSign=1
 
+" System clipboard integration {{{1
+" Yank selection to system clipboard
+noremap <Leader>y "*y
+
+" Yank current line to system clipboard
+noremap <Leader>yy "*Y
+
+" Paste text from system clipboard
+noremap <Leader>p :set paste<CR>"*p<Esc>:set nopaste<CR>
+
+
 " Move cursor by display lines when wrapping {{{1
 " http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 nnoremap j gj
