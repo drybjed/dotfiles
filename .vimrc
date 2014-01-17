@@ -216,6 +216,13 @@ if has ("syntax")
 
 endif " }}}
 
+" Folds {{{1
+" Open/Close folds with Space in normal mode
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+" Create new fold with foldmethod=manual
+vnoremap <Space> zf
+
 " Incerase/decrease ident of selected lines with < and > {{{1
 " http://vim.wikia.com/wiki/Shifting_blocks_visually
 vnoremap < <gv
