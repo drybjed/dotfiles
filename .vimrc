@@ -25,6 +25,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'mattn/webapi-vim'
     Bundle 'mattn/gist-vim'
     Bundle 'stephpy/vim-yaml'
+    Bundle 'chase/vim-ansible-yaml'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
