@@ -8,7 +8,13 @@ function say() {
 		local lang=${LANG%_*}
 		local text="$*"
 	fi
-	mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null
+	if $(command -v vlc > /dev/null); then
+		cvlc --quiet --play-and-exit "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null
+	elif $(command -v mplayer > /dev/null); then
+		mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null
+	else
+		echo "No audio streaming software installed, install vlc or mplayer"
+	fi
 }
 
 # vim:ft=zsh
