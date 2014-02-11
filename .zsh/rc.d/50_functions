@@ -163,5 +163,20 @@ whatwhen()  {
     esac
 }
 
+# Yank a directory in a git repository to separate repository
+function git-yank-directory() {
+
+    if [[ -n "${1}" && -n "${DESTROY_THIS_REPOSITORY}" ]]; then
+        git filter-branch --tag-name-filter cat --prune-empty --subdirectory-filter ${1} -- --all
+    else
+        echo "THIS COMMAND DESTROYS GIT REPOSITORIES!
+
+Clone your repository to a separate directory and run this command again with
+DESTROY_THIS_REPOSITORY=yes to make it work.
+
+Specify a directory to yank as an argument."
+    fi
+
+}
 
 # vim:ft=zsh
