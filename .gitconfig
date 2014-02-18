@@ -1,0 +1,16 @@
+[push]
+	default = simple
+
+[color]
+	ui          = true
+	branch      = auto
+	diff        = auto
+	interactive = auto
+	status      = auto
+
+[branch]
+	autosetuprebase = always
+
+[include]
+	path = ~/.gitconfig.local
+

@@ -2,7 +2,7 @@ CURDIR ?= $(.CURDIR)
 
 LN_FLAGS = -sfn
 
-.PHONY: .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark mc-ini
+.PHONY: .gitconfig .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark mc-ini
 
 COLOR = \033[32;01m
 NO_COLOR = \033[0m
@@ -27,9 +27,13 @@ help:
 
 all: install vim-vundle
 
-install: .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini gpg
+install: .gitconfig .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini gpg
 
 dark: .zshenv.local
+
+.gitconfig:
+	@echo "Symlinking ~/$@"
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
 
 .tmux.conf:
 	@echo "Symlinking ~/$@"
