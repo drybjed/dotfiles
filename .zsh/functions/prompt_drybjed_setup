@@ -135,7 +135,7 @@ function prompt_drybjed_setup() {
 	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && PROMPT+="$pc[x11]+$pc[reset]"
 	PROMPT+=" $pc[path]%25<...<%\$(prompt_drybjed_gitpath)~%<<%(1/.$pc[punc]/.)"
 	PROMPT+="\$(prompt_drybjed_scm_branch)"
-	PROMPT+="\$(prompt_drybjed_scm_commit_time)"
+	#PROMPT+="\$(prompt_drybjed_scm_commit_time)"
 	PROMPT+="%(1j. $pc[bg]bg$pc[reset].)"
 	PROMPT+="%(?.. $pc[rc]%1v$pc[reset])"
 	PROMPT+=" %(!.$pc[root].$pc[%])%#$pc[reset] "
