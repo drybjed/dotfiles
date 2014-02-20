@@ -8,6 +8,15 @@
 	interactive = auto
 	status      = auto
 
+[color "status"]
+	header		= normal
+	added		= green
+	updated		= cyan
+	changed		= yellow
+	untracked	= red
+	nobranch	= red
+	branch		= normal bold
+
 [branch]
 	autosetuprebase = always
 
