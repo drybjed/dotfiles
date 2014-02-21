@@ -26,6 +26,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'mattn/gist-vim'
     Bundle 'stephpy/vim-yaml'
     Bundle 'chase/vim-ansible-yaml'
+    Bundle 'plasticboy/vim-markdown'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
@@ -228,6 +229,14 @@ vnoremap <Space> zf
 " http://vim.wikia.com/wiki/Shifting_blocks_visually
 vnoremap < <gv
 vnoremap > >gv
+
+" Settings for vim-markdown {{{1
+let g:vim_markdown_folding_disabled=1
+
+" Open *.md files in Google Chrome - use with Markdown Reader extension:
+" https://chrome.google.com/webstore/detail/markdown-reader/gpoigdifkoadgajcincpilkjmejcaanc
+autocmd BufEnter *.md exec 'noremap <Leader>c :!google-chrome %:p<CR><CR>'
+
 
 " Settings for vim-gnupg {{{1
 let g:GPGPreferArmor=1
