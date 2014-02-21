@@ -138,7 +138,7 @@ function prompt_drybjed_setup() {
 	PROMPT=
 	[ -n "$SUDO_USER" ] && PROMPT+="$pc[sudouser]${SUDO_USER}$pc[punc]:$pc[reset]"
 	PROMPT+="%(!.$pc[root].$pc[user])%n$pc[reset]"
-	[ -n "${SSH_CONNECTION}" ] && PROMPT+="$pc[punc]@$pc[host]%m$pc[reset]"
+	PROMPT+="$pc[punc]@$pc[host]%m$pc[reset]"
 	#PROMPT+="$pc[punc].$pc[line]%l$pc[reset]"
 	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && PROMPT+="$pc[x11]+$pc[reset]"
 	PROMPT+=" $pc[path]%45<...<%\$(prompt_drybjed_gitpath)~%<<%(1/.$pc[punc]/.)"
