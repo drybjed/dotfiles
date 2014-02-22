@@ -233,9 +233,9 @@ vnoremap > >gv
 " Settings for vim-markdown {{{1
 let g:vim_markdown_folding_disabled=1
 
-" Open *.md files in Google Chrome - use with Markdown Reader extension:
+" Open *.md files in a web browser - use with Markdown Reader extension:
 " https://chrome.google.com/webstore/detail/markdown-reader/gpoigdifkoadgajcincpilkjmejcaanc
-autocmd BufEnter *.md exec 'noremap <Leader>c :!google-chrome %:p<CR><CR>'
+autocmd BufEnter *.md exec 'noremap <Leader>c :!x-www-browser %:p<CR><CR>'
 
 
 " Settings for vim-gnupg {{{1
