@@ -242,6 +242,12 @@ autocmd BufEnter *.md exec 'noremap <Leader>c :!x-www-browser %:p<CR><CR>'
 let g:GPGPreferArmor=1
 let g:GPGPreferSign=1
 
+" Settings for reStructuredText {{{1
+" Send current document to local web browser
+" rst2html index.rst | base64 -w 0 | xargs -i x-www-browser "data:text/html;charset=utf8;base64,{}"
+autocmd BufEnter *.rst exec 'noremap <Leader>c :!rst2html %:p \| base64 -w 0 \| xargs -i x-www-browser "data:text/html;charset=utf8;base64,{}"<CR><CR>'
+
+
 " System clipboard integration {{{1
 " Yank selection to system clipboard
 noremap <Leader>y "*y
