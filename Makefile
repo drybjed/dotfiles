@@ -33,35 +33,35 @@ dark: .zshenv.local
 
 .gitconfig:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .tmux.conf:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .vimrc:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .zsh:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .zshenv:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .zshenv.local:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .zlogin:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 .zshrc:
 	@echo "Symlinking ~/$@"
-	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
 vim-vundle:
 	@echo "Setting up vim bundles ... "
@@ -74,12 +74,12 @@ vim-vundle:
 mc-ini:
 	@echo "Copying ~/.config/mc/ini"
 	@mkdir -p ~/.config/mc
-	@test ! -e ~/.config/mc/ini && cp $(CURDIR)/.config/mc/ini ~/.config/mc/ini
+	@test ! -e ~/.config/mc/ini && cp $(CURDIR)/.config/mc/ini ~/.config/mc/ini || true
 
 gpg:
 	@echo "Symlinking ~/.gnupg/gpg.conf"
 	@mkdir -m 700 -p ~/.gnupg
-	@test ! -e ~/.gnupg/gpg.conf && ln $(LN_FLAGS) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf
+	@test ! -e ~/.gnupg/gpg.conf && ln $(LN_FLAGS) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf || true
 
 get:
 	@test ! -d ~/.dotfiles && git clone --quiet git://github.com/drybjed/dotfiles.git ~/.dotfiles/
