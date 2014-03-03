@@ -17,9 +17,6 @@
 	nobranch	= red
 	branch		= normal bold
 
-[branch]
-	autosetuprebase = always
-
 [alias]
 	lg = log --graph --all --format='%C(auto)%h%d %C(auto,bold black)<%C(reset)%C(auto,blue)%aE%C(auto,bold black)>%C(reset) %s %C(auto,bold black)(%C(reset)%C(auto,green)%ar%C(auto,bold black))%C(reset)'
 
