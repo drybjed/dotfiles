@@ -28,6 +28,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'chase/vim-ansible-yaml'
     Bundle 'plasticboy/vim-markdown'
     Bundle 'Rykka/riv.vim'
+    Bundle 'wannesm/wmgraphviz.vim'
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
