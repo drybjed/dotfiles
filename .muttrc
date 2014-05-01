@@ -1,0 +1,165 @@
+# ~/.muttrc
+
+set alias_file=~/.mail_aliases
+source `[ -f ~/.mail_aliases ] && echo "~/.mail_aliases" || echo "/dev/null"`
+
+set mailcap_path=~/.mailcap:/etc/mailcap:/usr/local/share/mailcap
+auto_view text/html
+
+set assumed_charset="utf-8"
+set charset="utf-8"
+set config_charset="utf-8"
+set file_charset="utf-8"
+set send_charset="utf-8"
+
+set confirmcreate="no"
+set confirmappend="no"
+set save_empty="no"
+set delete="no"
+
+set use_domain="yes"
+set postpone="ask-no"
+set fast_reply="yes"
+set include="yes"
+set abort_unmodified="ask-yes"
+set forward_quote="no"
+set forward_edit="no"
+set mime_forward="yes"
+set reverse_name="yes"
+set use_envelope_from="yes"
+set indent_string="> "
+
+set markers="no"
+set help="no"
+set menu_scroll="yes"
+set pager_context="1"
+set pager_index_lines="5"
+set pager_stop="yes"
+set beep="no"
+set reverse_alias="yes"
+set sort="threads"
+set sort_aux="date-sent"
+set sort_browser="alpha"
+set tilde="yes"
+unset wait_key
+set pipe_decode="yes"
+
+set rfc2047_parameters="yes"
+
+set date_format="%b %d"
+set folder_format="%2C %t %N %d %8s %f "
+set status_format="-%r-mutt: %f [Messages:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]-(%s/%S)-%> -(%P)---"
+set index_format="%4C %Z %7D %-20.20F (%?l?%4l&%4c?) %s"
+
+# Spam identification - SpamAssassin header format
+spam "X-Spam-Status: Yes" sa
+nospam "X-Spam-Status: No"
+
+# Printing options
+set print="ask-no"
+set print_command="/bin/false"
+
+# Headers
+ignore *
+unignore Date:
+unignore From:
+unignore To:
+unignore Cc:
+unignore Subject:
+unignore User-Agent:
+unignore X-Mailer:
+unignore X-Label:
+unignore X-Mailfolder:
+
+unhdr_order *
+hdr_order Date: From: To: Cc: Bcc: Subject: X-Label: X-Mailfolder:
+
+# Colors
+color normal		white		default
+color attachment	blue		default
+color hdrdefault	cyan		default
+color indicator		brightwhite	cyan
+color markers		brightred	default
+color quoted		green		default
+color signature		cyan		default
+color status		brightwhite	color235
+color tilde		brightblue	default
+color tree		red		default
+
+color quoted		green		default
+color quoted1		cyan		default
+color quoted2		yellow		default
+color quoted3		green		default
+color quoted4		cyan		default
+color quoted5		yellow		default
+color quoted6		green		default
+color quoted7		cyan		default
+color quoted8		yellow		default
+color quoted9		green		default
+
+color body		brightblue	default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"			# Email
+color body		brightblue	default "(http|ftp)://[\-\.\,/+=&%~_:?\#a-zA-Z0-9]+"		# URL
+color body		brightblue	default "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" # IP Address
+color body		brightgreen	default "(^| |[-.[:alnum:]]+:+)~?\(/[-_.'[:alnum:]]+\)+/?"	# Unix path
+color body		brightgreen	default "(^| +)[[:alpha:]]:[-_.[:alnum:]\]+"			# DOS path
+color body		brightmagenta	default "(^|[ '\"]+)\\$[[:alpha:]][-_[:alpha:]]+"		# Variables
+color body		brightwhite	default "(^| )[*_]+[-&[:alnum:]]+[*_]( |$)"			# Bold, underline
+color body		brightred	default "[!?]{3,}"						# Shauting
+color body		green		default "^ *[-+*o] +"						# Lists
+
+color header		brightgreen	default '^From:'
+color header		brightcyan	default '^To:'
+color header		brightcyan	default '^Reply-To:'
+color header		brightcyan	default '^Cc:'
+color header		brightblue	default '^Subject:'
+color header		brightcyan	default '^Newsgroups:'
+color header		yellow		default '^Delivered-To:'
+color header		green		default '^Sender:'
+color header		green		default '^organi[sz]ation:'
+color header		green		default '^X-Editor:'
+color header		green		default '(^X-Mailer|^User-Agent):'
+color header		green		default '^X-Operating-System:'
+color header		green		default '^X-MimeOLE:'
+color header		green		default '^X-Accept-Language:'
+color header		red		default	'^Message-Id:'
+color header		red		default	'^In-Reply-To:'
+color header		red		default	'^References:'
+color header		brightred	default	'^X-Spam'
+color header		cyan		default	'^Followup-To:'
+color header		cyan		default	'^Mail-Followup-To:'
+color header		cyan		default	'^Reply-To:'
+color header		magenta		default	'^MIME-Version:'
+color header		magenta		default	'^Content-Type:'
+color header		magenta		default	'^Content-Transfer-Encoding:'
+color header		magenta		default	'^Content-Disposition:'
+color header		magenta		default	'^Content-Encoding:'
+color header		magenta		default	'^Content-Language:'
+color header		magenta		default	'^X-Mailfolder:'
+
+color index		cyan		default '~P' # mails from me
+color index		green		default '~p' # mails to me
+color index		brightcyan	default '~G' # PGP
+color index		green		default '~Q' # responses
+color index		brightwhite	default '~N' # new
+color index		brightwhite	default '~O' # old
+color index		blue		default '~u' # subscribed mailing lists
+color index		red		default '~H sa' # Touched by SpamAssassin
+color index		red		default '~C [Uu]ndisclosed.*[Rr]ecipients'
+color index		red		default '~h X\-MIME\-Warning:.*Serious.*MIME.*defect.*detected.*\(\)'
+color index		magenta		default '~h "Precedence:.*(bulk|junk)"'
+
+color index		magenta		default "\(Resent-\)?Message-Id: <>"
+color index		magenta		default "\(Resent-\)?Message-Id: '<.* .*>'"
+color index		magenta		default "\(Resent-\)?Message-Id: localhost"
+color index		magenta		default "! \(Resent-\)?Message-Id: @"
+
+color index		magenta		default '~h "X-Spam-Level:.\\*\\*\\*\\*\\**$"'
+color index		red		default '~h "X-Spam-Level:.\\*\\*\\*\\*\\*\\*\\*\\*\\*\\**$"'
+
+color index		brightyellow	default '~F' # marked
+color index		brightred	default '~T' # tagged
+color index		brightblack	default '~D' # deleted
+
+# Load local configuration if present
+source `[ -f ~/.muttrc.local ] && echo "~/.muttrc.local" || echo "/dev/null"`
+

@@ -27,11 +27,15 @@ help:
 
 all: install vim-vundle
 
-install: .gitconfig .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini gpg
+install: .gitconfig .muttrc .tmux.conf .vimrc .zsh .zshenv .zlogin .zshrc mc-ini gpg
 
 dark: .zshenv.local
 
 .gitconfig:
+	@echo "Symlinking ~/$@"
+	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
+
+.muttrc:
 	@echo "Symlinking ~/$@"
 	@test ! -e ~/$@ && ln $(LN_FLAGS) $(CURDIR)/$@ ~/$@ || true
 
