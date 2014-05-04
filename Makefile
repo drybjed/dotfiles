@@ -2,7 +2,7 @@ CURDIR ?= $(.CURDIR)
 
 LN_FLAGS = -sfn
 
-.PHONY: .gitconfig .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark mc-ini
+.PHONY: .gitconfig .muttrc .tmux.conf .vimrc .zsh .zshenv .zshenv.local .zlogin .zshrc vim-vundle dark mc-ini
 
 COLOR = \033[32;01m
 NO_COLOR = \033[0m
