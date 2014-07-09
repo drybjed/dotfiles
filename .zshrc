@@ -1,5 +1,9 @@
 # ~/.zshrc
 
+for part in /etc/profile.d/*; do
+	source $part
+done
+
 for part in $HOME/.zsh/rc.d/??_*; do
 	source $part
 done
