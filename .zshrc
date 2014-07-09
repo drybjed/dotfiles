@@ -1,8 +1,10 @@
 # ~/.zshrc
 
-for part in /etc/profile.d/*; do
-	source $part
-done
+if ! find /etc/profile.d/ -maxdepth 0 -empty | read v; then
+	for part in /etc/profile.d/*; do
+		source $part
+	done
+fi
 
 for part in $HOME/.zsh/rc.d/??_*; do
 	source $part
