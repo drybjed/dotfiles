@@ -250,6 +250,12 @@ let g:GPGPreferSign=1
 " rst2html index.rst | base64 -w 0 | xargs -i x-www-browser "data:text/html;charset=utf8;base64,{}"
 autocmd BufEnter *.rst exec 'noremap <Leader>c :!rst2html %:p \| base64 -w 0 \| xargs -i x-www-browser "data:text/html;charset=utf8;base64,{}"<CR><CR>'
 
+" Settings for ctrlp {{{1
+let g:ctrlp_follow_symlinks=1
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+	\ 'file': '\v\.(pyc)$',
+	\ }
 
 " System clipboard integration {{{1
 " Yank selection to system clipboard
