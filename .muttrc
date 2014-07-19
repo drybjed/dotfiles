@@ -15,7 +15,7 @@ set send_charset="utf-8"
 set confirmcreate="no"
 set confirmappend="no"
 set save_empty="no"
-set delete="no"
+set delete="yes"
 
 set use_domain="yes"
 set postpone="ask-no"
