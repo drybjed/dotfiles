@@ -1,7 +1,0 @@
-# /etc/apt/sources.list.d/debian-squeeze-backports.list
-
-# APT repositories for Debian Backports for Squeeze
-# More information: http://backports.debian.org/
-
-  deb		http://backports.debian.org/debian-backports squeeze-backports main
-
