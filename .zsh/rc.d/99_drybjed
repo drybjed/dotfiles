@@ -1,0 +1,7 @@
+# Custom settings for owner
+
+if [ "${USER}" = "drybjed" -o "${SUDO_USER}" = "drybjed" ] ; then
+  # Make vim use dark background by default
+  export LC_VIM_HACK_COLORFGBG=dark
+fi
+
