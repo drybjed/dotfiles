@@ -1,0 +1,13 @@
+#
+# Mutt configuration file
+# Since 2009,  maethor <maethor@subiron.org>
+#
+#  This file is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY
+#
+
+# $Id$
+
+# Sourcing all executable files into $HOME/.muttrc.d
+source "/bin/run-parts --test $HOME/.muttrc.d | xargs cat |"
+

@@ -46,8 +46,8 @@ set pipe_decode="yes"
 
 set rfc2047_parameters="yes"
 
-set date_format="%b %d"
-set folder_format="%2C %t %N %d %8s %f "
+set date_format="%b %d %H:%M"
+set folder_format="%2C %t %N %D %8s %f "
 set status_format="-%r-mutt: %f [Messages:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]-(%s/%S)-%> -(%P)---"
 set index_format="%4C %Z %7D %-20.20F (%?l?%4l&%4c?) %s"
 
@@ -160,6 +160,13 @@ color index		brightyellow	default '~F' # marked
 color index		brightred	default '~T' # tagged
 color index		brightblack	default '~D' # deleted
 
+# Load owner configuration if present
+source `[ -f ~/.muttrc.d/muttrc.${USER} ] && echo "~/.muttrc.d/muttrc.${USER}" || echo "/dev/null"`
+source `[ -f ~/.mutt/muttrc.${USER} ] && echo "~/.mutt/muttrc.${USER}" || echo "/dev/null"`
+source `[ -f ~/.muttrc.${USER} ] && echo "~/.muttrc.${USER}" || echo "/dev/null"`
+
 # Load local configuration if present
+source `[ -f ~/.muttrc.d/muttrc.local ] && echo "~/.muttrc.d/muttrc.local" || echo "/dev/null"`
+source `[ -f ~/.mutt/muttrc.local ] && echo "~/.mutt/muttrc.local" || echo "/dev/null"`
 source `[ -f ~/.muttrc.local ] && echo "~/.muttrc.local" || echo "/dev/null"`
 
