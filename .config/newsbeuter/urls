@@ -1,0 +1,40 @@
+# drybjed's RSS feeds for newsbeuter
+
+# reddit.com feeds
+http://www.reddit.com/r/linux/.rss		"~reddit.com: linux"		reddit Linux
+http://www.reddit.com/r/sysadmin/.rss		"~reddit.com: sysadmin"		reddit SysAdmin
+http://www.reddit.com/r/xkcd/.rss		"~reddit.com: xkcd"		reddit comics
+http://www.reddit.com/r/debian/.rss		"~reddit.com: debian"		reddit Debian Linux
+http://www.reddit.com/r/linuxadmin/.rss		"~reddit.com: linuxadmin"	reddit Linux SysAdmin
+
+# Comics
+http://www.smbc-comics.com/rss.php		"~Saturday Morning Breakfast Cereal"	comics
+http://xkcd.com/atom.xml			"~xkcd"					comics
+
+# Various feeds
+http://feeds.feedburner.com/linuxjournalcom	"~Linux Journal"		Linux news
+http://jpmens.net/atom.xml			"~Jan-Piet Mens"		Linux Ansible blog
+http://feeds.feedburner.com/LinuxToday		"~Linux Today"			Linux news
+http://www.ansible.com/blog/rss.xml		"~Ansible Blog"			Linux Ansible blog
+http://www.debian.org/News/weekly/dwn		"~Debian Project News"		Debian Linux news
+https://about.gitlab.com/atom.xml		"~GitLab Blog"			blog
+
+# Polish feeds
+http://rss.trojmiasto.pl/rss,1.xml		"~Trojmiasto.pl"		Polish news
+
+# Debian GNU/Linux
+http://www.debian.org/security/dsa-long		"~Debian: Debian Security Advisories"	Debian Linux security
+
+# Planets
+http://planet.debian.org/rss20.xml		"~Planet Debian"		Debian Linux planet
+http://planetsysadmin.com/rss20.xml		"~Planet SysAdmin"		Linux SysAdmin planet
+
+# YouTube feeds
+http://gdata.youtube.com/feeds/base/users/ExplosmEntertainment/uploads?alt=rss	"~YouTube: Cyanide & Happiness"	YouTube
+http://gdata.youtube.com/feeds/base/users/spumwack/uploads?alt=rss		"~YouTube: Spumwack"		YouTube
+http://gdata.youtube.com/feeds/base/users/HISHEdotcom/uploads?alt=rss		"~YouTube: How It Should Have Ended" YouTube
+http://gdata.youtube.com/feeds/base/users/CinemaSins/uploads?alt=rss		"~YouTube: CinemaSins"		YouTube
+http://gdata.youtube.com/feeds/base/users/screenjunkies/uploads?alt=rss		"~YouTube: Screen Junkies"	YouTube
+http://gdata.youtube.com/feeds/base/users/YourMovieSucksDOTorg/uploads?alt=rss	"~YouTube: YourMovieSucks.org"	YouTube
+http://gdata.youtube.com/feeds/base/users/szyzyg/uploads?alt=rss		"~YouTube: Scott Manley"	YouTube
+

@@ -1,0 +1,42 @@
+# ~/.config/newsbeuter/config
+
+# Configuration
+max-items 100
+bind-key r reload-all
+feed-sort-order firsttag
+refresh-on-startup yes
+reload-time 60
+reload-threads 1
+show-read-feeds no
+suppress-first-reload yes
+text-width 72
+
+# Colors
+color background          white    default
+color listnormal          white    default
+color listfocus           white    magenta   bold
+color listnormal_unread   color87  default   bold
+color listfocus_unread    color87  magenta   bold
+color info                white    color238
+color article             white    default
+
+# Highlights
+highlight article "^submitted\ by\ .*$"    magenta  default
+highlight article "^(Title|Tytuł):.*$"     yellow   default   bold
+highlight article "^(Feed|Kanał):.*$"      cyan     default
+highlight article "^(Date|Data):.*$"       green    default
+highlight article "^(Author|Autor):.*$"    color138 default
+highlight article "^(Link|Odsyłacz):.*$"   color190 default
+highlight article "^(Links|Odsyłacze):"    color190 default
+highlight all     "https?://[^ ]+"         blue     default   bold
+highlight all     "http?://[^ ]+"          blue     default   bold
+
+# ,y = open YouTube feeds in smtube
+macro y set browser "smtube %u" ; open-in-browser ; set browser "sensible-browser %u"
+
+# ,e = open links in elinks
+macro e set browser "elinks %u" ; open-in-browser ; set browser "sensible-browser %u"
+
+# ,r = open reddit.com links in elinks
+macro r set browser "elinks $(echo %u | sed -e 's#http://www.reddit.com#http://m.reddit.com#')" ; open-in-browser ; set browser "sensible-browser %u"
+
