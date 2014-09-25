@@ -163,6 +163,11 @@ whatwhen()  {
     esac
 }
 
+# Show numerical values of 256 terminal colors
+256colors () {
+    for code in $(seq -w 0 255); do printf "%03s %bTest%b %bTest%b %b    %b\n" "${code}" "\e[0;38;05;${code}m" "\e[m" "\e[1;38;05;${code}m" "\e[m" "\e[3;38;05;${code}m" "\e[m" ; done | column -c $((COLUMNS*3))
+}
+
 # Yank a directory in a git repository to separate repository
 function git-yank-directory() {
 
