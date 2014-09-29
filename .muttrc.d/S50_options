@@ -1,0 +1,54 @@
+# ~/.muttrc
+
+# ---- Folder options ----
+
+set confirmcreate = no
+set confirmappend = no
+set save_empty = no
+
+
+# ---- Message handling options ----
+set delete = yes
+set rfc2047_parameters = yes
+
+
+
+# ---- Forward options ----
+
+set forward_quote = no
+set forward_edit = no
+set mime_forward = yes
+
+
+# ---- Message creation options ----
+
+set use_domain = yes
+set postpone = no
+set fast_reply = yes
+set include = yes
+set abort_unmodified = no
+set reverse_name = yes
+set use_envelope_from = yes
+set indent_string = "> "
+
+
+# ---- Interface options ----
+
+set help = no
+set beep = no
+set reverse_alias = yes
+set wait_key = no
+set pipe_decode = yes
+
+set folder_format = "%2C %t %N %D %8s %f "
+set status_format = "-%r-mutt: %f [Messages:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]-(%s/%S)-%> -(%P)---"
+
+# Spam identification - SpamAssassin header format
+spam "X-Spam-Status: Yes" sa
+nospam "X-Spam-Status: No"
+
+# Printing options
+set print = ask-no
+set print_command = "/bin/false"
+
+# vim:ft=muttrc

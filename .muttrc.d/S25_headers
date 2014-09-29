@@ -1,0 +1,17 @@
+# Mail headers settings
+
+# Keep a cache of all headers and body
+set header_cache = ~/.cache/mutt/headers/
+
+# I don't care about editing headers by default
+#set edit_headers = no
+
+# Don't print all header's lines
+ignore *
+unignore Date From To Cc Reply-To List-Id Subject X-Mailer User-Agent X-Approved-By X-Label X-Spam-Status X-Greylist
+
+# Define order
+unhdr_order *
+hdr_order Date From To Cc Reply-To List-Id Subject X-Mailer User-Agent X-Approved-By X-Label
+
+# vim:ft=muttrc

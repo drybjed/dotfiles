@@ -1,0 +1,4 @@
+# IMAP options
+
+set imap_check_subscribed = yes
+

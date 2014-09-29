@@ -1,0 +1,26 @@
+# Pager settings
+
+
+# Don't move to the next message when I invoke next-page at the end of a message
+set pager_stop = yes
+
+# Print 10 index line at the top of the pager
+set pager_index_lines = 10
+
+set pager_context = 1
+
+set mailcap_path=~/.mailcap:/etc/mailcap:/usr/local/share/mailcap
+alternative_order test/enriched text/plain text/html
+auto_view text/html
+
+# show tildes like in vim
+set tilde = yes
+
+# Don't display markers for wrapped lines
+set markers = no
+
+# Emulate vim
+bind pager gg top
+bind pager G  bottom
+
+# vim:ft=muttrc

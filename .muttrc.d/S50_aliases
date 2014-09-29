@@ -1,0 +1,6 @@
+# Load aliases from various sources
+
+set alias_file=~/.mail_aliases
+source `[ -f ~/.mail_aliases ] && echo "~/.mail_aliases" || echo "/dev/null"`
+
+# vim:ft=muttrc

@@ -1,0 +1,13 @@
+# ~/.muttrc
+
+# Load owner configuration if present
+source `[ -f ~/.muttrc.d/muttrc.${USER} ] && echo "~/.muttrc.d/muttrc.${USER}" || echo "/dev/null"`
+source `[ -f ~/.mutt/muttrc.${USER} ] && echo "~/.mutt/muttrc.${USER}" || echo "/dev/null"`
+source `[ -f ~/.muttrc.${USER} ] && echo "~/.muttrc.${USER}" || echo "/dev/null"`
+
+# Load local configuration if present
+source `[ -f ~/.muttrc.d/muttrc.local ] && echo "~/.muttrc.d/muttrc.local" || echo "/dev/null"`
+source `[ -f ~/.mutt/muttrc.local ] && echo "~/.mutt/muttrc.local" || echo "/dev/null"`
+source `[ -f ~/.muttrc.local ] && echo "~/.muttrc.local" || echo "/dev/null"`
+
+# vim:ft=muttrc

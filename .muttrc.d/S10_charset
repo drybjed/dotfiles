@@ -1,0 +1,8 @@
+# Charset and locale settings
+
+set assumed_charset = "utf-8"
+set charset         = "utf-8"
+set config_charset  = "utf-8"
+set send_charset    = "utf-8"
+
+# vim:ft=muttrc

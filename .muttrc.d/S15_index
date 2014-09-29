@@ -1,0 +1,51 @@
+# Index settings
+
+
+# ---- Display preferences ----
+
+# Date and index format
+set date_format  = "%b %d %H:%M"
+set index_format = "%4C %3M %Z  %D  %-25.25L [%?l?%4l&%4c?] %s"
+
+# Mark old unseen messages
+set mark_old = yes
+
+# Collapse all threads on startup
+folder-hook . "push <collapse-all>"
+
+# Don't collapse threads with unread messages
+set collapse_unread = no
+
+# scroll in menus
+set menu_scroll = yes
+
+# Leave 5 lines of context while scrolling
+set menu_context = 5
+
+# ---- Sorting ----
+
+# Main sorting method
+set sort = threads
+
+# Thread sorting method
+set sort_aux = last-date-received
+
+# Use In-Reply-To: and References: headers for threading
+set strict_threads = yes
+
+
+# ---- Index key bindings ----
+
+# Emulate vim
+bind index gg first-entry
+bind index G  last-entry
+bind index <space> collapse-thread
+
+# Unset 'l'
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# vim:ft=muttrc

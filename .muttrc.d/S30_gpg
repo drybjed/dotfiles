@@ -1,0 +1,23 @@
+# GPG configuration
+
+# http://blog.sanctum.geek.nz/linux-crypto-email/
+
+# Use pgp-agent if it's available (needed for Yubikey)
+set pgp_use_gpg_agent = yes
+
+# Use GPGME
+set crypt_use_gpgme = yes
+
+# Sign replies to signed email
+set crypt_replysign = yes
+
+# Encrypt replies to encrypted email
+set crypt_replyencrypt = yes
+
+# Encrypt and sign replies to encrypted and signed email
+set crypt_replysignencrypted = yes
+
+# Attempt to verify email signatures automatically
+set crypt_verify_sig = yes
+
+# vim:ft=muttrc
