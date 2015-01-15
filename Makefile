@@ -35,8 +35,10 @@ ZSH = ~/.zsh ~/.zshenv ~/.zlogin ~/.zshrc
 
 TMUX = ~/.tmux.conf
 
+XRESOURCES = ~/.Xresources
 
-SYMLINKS = $(VIM) $(ZSH) $(GIT) $(TMUX) $(MUTT)
+
+SYMLINKS = $(VIM) $(ZSH) $(GIT) $(TMUX) $(MUTT) $(XRESOURCES)
 
 OWNER_SYMLINKS = $(GIT_OWNER) $(MUTT_OWNER)
 
@@ -47,6 +49,8 @@ all: install vim-vundle
 
 install: git mutt tmux vim zsh mc gpg newsbeuter
 
+gui: xresources
+
 vim: $(VIM)
 
 zsh: $(ZSH)
@@ -56,6 +60,8 @@ git: $(GIT) $(GIT_OWNER)
 mutt: $(MUTT) $(MUTT_OWNER)
 
 tmux: $(TMUX)
+
+xresources: $(XRESOURCES)
 
 vim-vundle:
 	@echo "Setting up vim bundles ... "

@@ -1,17 +1,75 @@
 ! ~/.Xresources
 
-! Xft settings
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintslight
+! ---- XTerm options ----
 
-! xterm
-XTerm*faceName:		Inconsolata:size=10
-XTerm*utf8:		2
 XTerm*termName:		xterm-256color
-XTerm*saveLines:	4096
+XTerm*utf8:		2
+XTerm*locale:		true
+XTerm*metaSendsEscape:	true
+XTerm*eightBitInput:	true
+XTerm*saveLines:	2048
 XTerm*borderWidth:	0
-XTerm*geometry:		140x40
+XTerm*VT100.geometry:	140x40
+XTerm*dynamicColors:	true
+XTerm*bellIsUrgent:	true
+
+XTerm*renderFont:	true
+XTerm*faceName:		Inconsolata
+XTerm*faceSize:		12
+XTerm*font:		-*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*preeditType:	Root
+XTerm*xftAntialias:	true
+
+! ---- XTerm colors ----
+
+XTerm*background:	#000000
+XTerm*foreground:	#d9e6f2
+
+! black
+XTerm*color0:		#2b2b2b
+
+! bright_black
+XTerm*color8:		#4b4b4b
+
+! red
+XTerm*color1:		#7a2142
+
+! bright_red
+XTerm*color9:		#cd3a67
+
+! green
+XTerm*color2:		#29862d
+
+! bright_green
+XTerm*color10:		#4ed947
+
+! yellow
+XTerm*color3:		#7a722d
+
+! bright_yellow
+XTerm*color11:		#cdb947
+
+! blue
+XTerm*color4:		#143593
+
+! bright_blue
+XTerm*color12:		#2e5ae6
+
+! magenta
+XTerm*color5:		#662193
+
+! bright_magenta
+XTerm*color13:		#ad3ae6
+
+! cyan
+XTerm*color6:		#14867f
+
+! bright_cyan
+XTerm*color14:		#2ed9c6
+
+! white
+XTerm*color7:		#a1a1a1
+
+! bright_white
+XTerm*color15:		#d9d9d9
 
