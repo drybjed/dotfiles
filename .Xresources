@@ -12,6 +12,7 @@ XTerm*borderWidth:	0
 XTerm*VT100.geometry:	140x40
 XTerm*dynamicColors:	true
 XTerm*bellIsUrgent:	true
+XTerm*fullscreen:	never
 
 XTerm*renderFont:	true
 XTerm*faceName:		Inconsolata
