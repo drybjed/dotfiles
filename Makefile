@@ -1,68 +1,61 @@
 # Makefile for ~/.config/dotfiles
 # Author: Maciej Delmanowski <drybjed@gmail.com>
 
+
+# ---- Makefile options ----
+
 # Get current directory
-CURDIR ?= $(.CURDIR)
+CURDIR			?= $(.CURDIR)
 
 # If current user is the same as owner, do more things
-OWNER = drybjed
+OWNER			= drybjed
 
 # Where dotfiles are kept
-DOTFILES = ~/.config/dotfiles
+DOTFILES		= ~/.config/dotfiles
 
 # Source of dotfiles
-DOTFILES_GIT_URL = https://github.com/${OWNER}/dotfiles
+DOTFILES_GIT_URL	= https://github.com/${OWNER}/dotfiles
 
 # Commands
-LINK = ln -sfn
-COPY = cp -f
+LINK			= ln -snv
+COPY			= cp -fv
 
-# Colors
-COLOR = \033[32;01m
-NO_COLOR = \033[0m
 
-help:
-	@echo "Makefile for installing dotfiles"
-	@echo
-	@echo "Create symlinks:"
-	@echo "   $(COLOR)make install$(NO_COLOR)		Install symlinks"
-	@echo
-	@echo "Install vim bundles:"
-	@echo "   $(COLOR)make vim-vundle$(NO_COLOR)	Install vim bundles"
-	@echo
-	@echo "Maintenance:"
-	@echo "   $(COLOR)make get$(NO_COLOR)		git clone dotfiles in ~/.dotfiles/"
-	@echo "   $(COLOR)make check-dead$(NO_COLOR)	Print dead symlinks"
-	@echo "   $(COLOR)make clean-dead$(NO_COLOR)	Delete dead symlinks"
-	@echo "   $(COLOR)make update$(NO_COLOR)		Alias for git pull --rebase"
-	@echo
-	@echo "Useful aliases:"
-	@echo "   $(COLOR)make all$(NO_COLOR)		install vim-vundle"
+# ---- dotfiles ----
+
+GIT = ~/.gitconfig
+GIT_OWNER = ~/.gitconfig.$(OWNER)
+
+MUTT = ~/.muttrc ~/.muttrc.d
+MUTT_OWNER = ~/.muttrc.$(OWNER)
+
+VIM = ~/.vimrc
+
+ZSH = ~/.zsh ~/.zshenv ~/.zlogin ~/.zshrc
+
+TMUX = ~/.tmux.conf
+
+
+SYMLINKS = $(VIM) $(ZSH) $(GIT) $(TMUX) $(MUTT)
+
+OWNER_SYMLINKS = $(GIT_OWNER) $(MUTT_OWNER)
+
+
+# ---- Main Makefile ----
 
 all: install vim-vundle
 
 install: git mutt tmux vim zsh mc gpg newsbeuter
 
-git:
-	@echo "Configuring git ..."
-	@test ! -e ~/.gitconfig && ${LINK} $(CURDIR)/.gitconfig ~/.gitconfig || true
-	@test ! -e ~/.gitconfig.${OWNER} -a "${USER}" = "${OWNER}" && \
-		${LINK} $(CURDIR)/.gitconfig.${OWNER} ~/.gitconfig.${OWNER} || true
+vim: $(VIM)
 
-mutt:
-	@echo "Configuring mutt ..."
-	@test ! -e ~/.muttrc.d && ${LINK} $(CURDIR)/.muttrc.d ~/.muttrc.d || true
-	@test ! -e ~/.muttrc && ${LINK} $(CURDIR)/.muttrc ~/.muttrc || true
-	@test ! -e ~/.muttrc.${OWNER} -a "${USER}" = "${OWNER}" -a -e $(CURDIR)/.muttrc.${OWNER} && \
-		${LINK} $(CURDIR)/.muttrc.${OWNER} ~/.muttrc.${OWNER} || true
+zsh: $(ZSH)
 
-tmux:
-	@echo "Configuring tmux ..."
-	@test ! -e ~/.tmux.conf && ${LINK} $(CURDIR)/.tmux.conf ~/.tmux.conf || true
+git: $(GIT) $(GIT_OWNER)
 
-vim:
-	@echo "Configuring vim ..."
-	@test ! -e ~/.vimrc && ${LINK} $(CURDIR)/.vimrc ~/.vimrc || true
+mutt: $(MUTT) $(MUTT_OWNER)
+
+tmux: $(TMUX)
 
 vim-vundle:
 	@echo "Setting up vim bundles ... "
@@ -72,29 +65,19 @@ vim-vundle:
 		~/.vim/bundle/vundle && \
 		vim +BundleInstall +qall)
 
-zsh:
-	@echo "Configuring zsh ..."
-	@test ! -d ~/.zsh && ${LINK} $(CURDIR)/.zsh ~/.zsh || true
-	@test ! -e ~/.zshenv && ${LINK} $(CURDIR)/.zshenv ~/.zshenv || true
-	@test ! -e ~/.zlogin && ${LINK} $(CURDIR)/.zlogin ~/.zlogin || true
-	@test ! -e ~/.zshrc && ${LINK} $(CURDIR)/.zshrc ~/.zshrc || true
-
 mc:
-	@echo "Configuring mc ..."
 	@mkdir -p ~/.config/mc
-	@test ! -e ~/.config/mc/ini && ${COPY} $(CURDIR)/.config/mc/ini ~/.config/mc/ini || true
+	@test -e ~/.config/mc/ini || $(COPY) $(CURDIR)/.config/mc/ini ~/.config/mc/ini
 
 gpg:
-	@echo "Configuring gpg ..."
 	@mkdir -m 700 -p ~/.gnupg
-	@test ! -e ~/.gnupg/gpg.conf && ${LINK} $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf || true
+	@test -e ~/.gnupg/gpg.conf || $(LINK) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 newsbeuter:
-	@echo "Configuring newsbeuter ..."
 	@mkdir -p ~/.local/share/newsbeuter
 	@mkdir -p ~/.config/newsbeuter
-	@test ! -e ~/.config/newsbeuter/config && \
-		${LINK} $(CURDIR)/.config/newsbeuter/config ~/.config/newsbeuter/config || true
+	@test -e ~/.config/newsbeuter/config || \
+		${LINK} $(CURDIR)/.config/newsbeuter/config ~/.config/newsbeuter/config
 	@test ! -e ~/.config/newsbeuter/urls -a "${USER}" = "${OWNER}" && \
 		${LINK} $(CURDIR)/.config/newsbeuter/urls ~/.config/newsbeuter/urls || true
 
@@ -109,4 +92,10 @@ clean-dead:
 
 update:
 	@git pull --rebase
+
+$(SYMLINKS):
+	@$(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@
+
+$(OWNER_SYMLINKS):
+	@test "$(USER)" = "$(OWNER)" && $(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@ || true
 
