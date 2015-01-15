@@ -49,7 +49,7 @@ all: install vim-vundle
 
 install: git mutt tmux vim zsh mc gpg newsbeuter
 
-gui: xresources
+gui: xresources i3
 
 vim: $(VIM)
 
@@ -78,6 +78,11 @@ mc:
 gpg:
 	@mkdir -m 700 -p ~/.gnupg
 	@test -e ~/.gnupg/gpg.conf || $(LINK) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf
+
+i3:
+	@mkdir -p ~/.config
+	@test -e ~/.config/i3 || \
+		${LINK} $(CURDIR)/.config/i3 ~/.config/i3
 
 newsbeuter:
 	@mkdir -p ~/.local/share/newsbeuter
