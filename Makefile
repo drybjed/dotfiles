@@ -108,5 +108,5 @@ $(SYMLINKS):
 	@$(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@
 
 $(OWNER_SYMLINKS):
-	@test "$(USER)" = "$(OWNER)" && $(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@ || true
+	@test "$(USER)" = "$(OWNER)" && (test -h $@ || $(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@) || true
 
