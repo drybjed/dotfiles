@@ -47,7 +47,7 @@ OWNER_SYMLINKS = $(GIT_OWNER) $(MUTT_OWNER)
 
 all: install vim-vundle
 
-install: git mutt tmux vim zsh mc gpg newsbeuter
+install: git mutt tmux vim zsh mc gpg
 
 gui: xresources i3
 
