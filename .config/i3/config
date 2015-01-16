@@ -186,6 +186,9 @@ bindsym $mod+bracketleft workspace prev
 for_window [class="Google-chrome" title="Google Chrome"] border 1pixel
 for_window [class="Chromium" title="Chromium"] border 1pixel
 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
 
 # ---- i3bar ----
 
