@@ -49,7 +49,13 @@ all: install vim-vundle
 
 install: git mutt tmux vim zsh mc gpg
 
+owner: install vim-vundle gui smartcard newsbeuter
+
 gui: xresources i3
+	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
+
+smartcard:
+	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
 
 vim: $(VIM)
 

@@ -1,0 +1,38 @@
+---
+
+- hosts: localhost
+  sudo: True
+
+  tasks:
+
+    - name: Install packages required for smartcard support
+      apt:
+        name: '{{ item }}'
+        state: 'latest'
+        install_recommends: False
+      with_items: [ 'gnupg-agent', 'libpth20', 'pinentry-gtk2', 'libccid',
+                    'pcscd', 'scdaemon', 'libksba8' ]
+
+    - name: Disable standard ssh-agent in Xsession
+      lineinfile:
+        dest: '/etc/X11/Xsession.options'
+        regexp: '^use-ssh-agent'
+        state: 'absent'
+
+    - name: Purge gnome-keyring support
+      apt:
+        name: 'libpam-gnome-keyring'
+        state: 'absent'
+
+    - name: Make sure that ~/.gnupg/gpg-agent.conf exists
+      command: touch ~/.gnupg/gpg-agent.conf creates=~/.gnupg/gpg-agent.conf
+      sudo: False
+
+    - name: Enable ssh support in gpg-agent
+      lineinfile:
+        dest: '~/.gnupg/gpg-agent.conf'
+        regexp: '^enable-ssh-support'
+        line: 'enable-ssh-support'
+        state: 'present'
+      sudo: False
+
