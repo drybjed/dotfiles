@@ -27,7 +27,6 @@ GIT = ~/.gitconfig
 GIT_OWNER = ~/.gitconfig.$(OWNER)
 
 MUTT = ~/.muttrc ~/.muttrc.d
-MUTT_OWNER = ~/.muttrc.$(OWNER)
 
 VIM = ~/.vimrc
 
@@ -40,7 +39,7 @@ XRESOURCES = ~/.Xresources
 
 SYMLINKS = $(VIM) $(ZSH) $(GIT) $(TMUX) $(MUTT) $(XRESOURCES)
 
-OWNER_SYMLINKS = $(GIT_OWNER) $(MUTT_OWNER)
+OWNER_SYMLINKS = $(GIT_OWNER)
 
 
 # ---- Main Makefile ----
