@@ -5,3 +5,13 @@ if [ "${USER}" = "drybjed" -o "${SUDO_USER}" = "drybjed" ] ; then
   export LC_VIM_HACK_COLORFGBG=dark
 fi
 
+# If this is an interactive session on Linux console, log out after 2 minutes
+# of inactivity
+if [[ $TTY == *tty* ]] && [[ $- == *i* ]] ; then
+  TMOUT=120
+  TRAPALRM () {
+    exit
+  }
+  echo "Idle session will exit after 2 minutes"
+fi
+
