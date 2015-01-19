@@ -7,7 +7,7 @@ XTerm*utf8:		2
 XTerm*locale:		true
 XTerm*metaSendsEscape:	true
 XTerm*eightBitInput:	true
-XTerm*saveLines:	2048
+XTerm*saveLines:	8192
 XTerm*borderWidth:	0
 XTerm*VT100.geometry:	140x40
 XTerm*dynamicColors:	true
