@@ -39,6 +39,9 @@ font pango: DejaVu Sans Mono 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Wrap around inside stacked or tabbed containers
+force_focus_wrapping yes
+
 # Go back to previous workspace
 workspace_auto_back_and_forth yes
 
@@ -84,7 +87,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -107,7 +110,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+shift+a focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -132,6 +135,11 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+# vim-like marks
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -P 'Goto mark: '
+bindsym $mod+m exec i3-input -F 'mark "%s"' -P 'Add mark: '
+bindsym $mod+Shift+m exec i3-input -F 'unmark "%s"' -P 'Remove mark: '
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
