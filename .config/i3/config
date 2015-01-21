@@ -188,6 +188,9 @@ bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/'
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
+
 
 # ---- Window options ----
 
