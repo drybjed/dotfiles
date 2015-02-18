@@ -8,19 +8,13 @@ http://www.reddit.com/r/debian/.rss		"~reddit.com: debian"		reddit Debian Linux
 http://www.reddit.com/r/linuxadmin/.rss		"~reddit.com: linuxadmin"	reddit Linux SysAdmin
 
 # Comics
-http://www.smbc-comics.com/rss.php		"~Saturday Morning Breakfast Cereal"	comics
 http://xkcd.com/atom.xml			"~xkcd"					comics
 
 # Various feeds
-http://feeds.feedburner.com/linuxjournalcom	"~Linux Journal"		Linux news
 http://jpmens.net/atom.xml			"~Jan-Piet Mens"		Linux Ansible blog
-http://feeds.feedburner.com/LinuxToday		"~Linux Today"			Linux news
 http://www.ansible.com/blog/rss.xml		"~Ansible Blog"			Linux Ansible blog
 http://www.debian.org/News/weekly/dwn		"~Debian Project News"		Debian Linux news
 https://about.gitlab.com/atom.xml		"~GitLab Blog"			blog
-
-# Polish feeds
-http://rss.trojmiasto.pl/rss,1.xml		"~Trojmiasto.pl"		Polish news
 
 # Debian GNU/Linux
 http://www.debian.org/security/dsa-long		"~Debian: Debian Security Advisories"	Debian Linux security
@@ -30,11 +24,30 @@ http://planet.debian.org/rss20.xml		"~Planet Debian"		Debian Linux planet
 http://planetsysadmin.com/rss20.xml		"~Planet SysAdmin"		Linux SysAdmin planet
 
 # YouTube feeds
-http://gdata.youtube.com/feeds/base/users/ExplosmEntertainment/uploads?alt=rss	"~YouTube: Cyanide & Happiness"	YouTube
 http://gdata.youtube.com/feeds/base/users/spumwack/uploads?alt=rss		"~YouTube: Spumwack"		YouTube
 http://gdata.youtube.com/feeds/base/users/HISHEdotcom/uploads?alt=rss		"~YouTube: How It Should Have Ended" YouTube
 http://gdata.youtube.com/feeds/base/users/CinemaSins/uploads?alt=rss		"~YouTube: CinemaSins"		YouTube
 http://gdata.youtube.com/feeds/base/users/screenjunkies/uploads?alt=rss		"~YouTube: Screen Junkies"	YouTube
 http://gdata.youtube.com/feeds/base/users/YourMovieSucksDOTorg/uploads?alt=rss	"~YouTube: YourMovieSucks.org"	YouTube
 http://gdata.youtube.com/feeds/base/users/szyzyg/uploads?alt=rss		"~YouTube: Scott Manley"	YouTube
+
+# New feeds
+http://superuser.com/feeds/featured			"~SuperUser: Featured Questions"
+http://serverfault.com/feeds/featured			"~ServerFault: Featured Questions"
+http://feeds.feedburner.com/schneier/fulltext		"~Sheiner on Security"
+http://everythingsysadmin.com/atom.xml			"~Everything Sysadmin"
+http://feeds.feedburner.com/HighScalability		"~High Scalability"
+http://feeds.scottlowe.org/slowe/content/feed/		"~blog.scottlowe.org"
+http://feeds.feedburner.com/standalone-sysadmin		"~Standalone Sysadmin"
+http://feeds.feedburner.com/lonesysadmin/mkpe		"~The Lone Sysadmin"
+http://feeds.feedburner.com/TheNubbyAdmin		"~The Nubby SysAdmin"
+http://packetlife.net/blog/feed/			"~Packet Life"
+http://feeds.feedburner.com/codinghorror/		"~Coding Horror"
+http://www.computerweekly.com/blogs/it-fud-blog/atom.xml	"~Cliff Saran’s Enterprise blog"
+http://feeds.feedburner.com/sysad			"~My SysAd Blog"
+http://www.shellguardians.com/feeds/posts/default	"~When a shell is not enough"
+http://feeds.feedburner.com/LinuxSystemAdminsBlog	"~Linux Sysadmin Blog"
+http://feeds.feedburner.com/unixsadm			"~UNIX System Administration: Solaris, AIX, HP-UX, Tru64, BSD."
+http://syndication.thedailywtf.com/TheDailyWtf		"~The Daily WTF"
+https://sysadmincasts.com/feed.rss			"~SysAdminCasts"
 
