@@ -191,6 +191,11 @@ bindsym $mod+bracketleft workspace prev
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
+# Volume/Audio controls
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 5%+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 5%- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+
 
 # ---- Window options ----
 
