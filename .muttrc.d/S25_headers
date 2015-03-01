@@ -8,10 +8,10 @@ set header_cache = ~/.cache/mutt/headers/
 
 # Don't print all header's lines
 ignore *
-unignore Date From To Cc Reply-To List-Id Subject X-Mailer User-Agent X-Approved-By X-Label X-Spam-Status X-Greylist
+unignore Date: From: To: Cc: Reply-To: List-Id: Subject: X-Mailer: User-Agent: X-Approved-By: X-Label: X-Spam-Status: X-Greylist:
 
 # Define order
 unhdr_order *
-hdr_order Date From To Cc Reply-To List-Id Subject X-Mailer User-Agent X-Approved-By X-Label
+hdr_order Date: From: To: Cc: Reply-To: List-Id: Subject: X-Mailer: User-Agent: X-Approved-By: X-Label:
 
 # vim:ft=muttrc
