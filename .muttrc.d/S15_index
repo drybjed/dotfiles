@@ -4,8 +4,8 @@
 # ---- Display preferences ----
 
 # Date and index format
-set date_format  = "%b %d %H:%M"
-set index_format = "%4C %3M %Z  %D  %-25.25L [%?l?%4l&%4c?] %s"
+set date_format  = "%b %d"
+set index_format = "%4C %3M %Z  %D  %-15.15L [%?l?%4l&%4c?] %s"
 
 # Mark old unseen messages
 set mark_old = yes
