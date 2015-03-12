@@ -30,7 +30,7 @@ MUTT = ~/.muttrc ~/.muttrc.d
 
 VIM = ~/.vimrc
 
-ZSH = ~/.zsh ~/.zshenv ~/.zlogin ~/.zshrc
+ZSH = ~/.zsh ~/.zshenv ~/.zlogin ~/.zlogout ~/.zshrc
 
 TMUX = ~/.tmux.conf
 
