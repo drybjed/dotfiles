@@ -1,5 +1,11 @@
 " ~/.vimrc
 
+" Check if we are in a restricted mode
+silent! call writefile([], '')
+" In restricted mode, this fails with E145: Shell commands not allowed in rvim
+" In non-restricted mode, this fails with E482: Can't create file <empty>
+let isRestricted = (v:errmsg =~# '^E145:')
+
 " Vundle support				{{{
 " http://github.com/gmarik/vundle
 " Setup: git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -20,8 +26,12 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'tpope/vim-fugitive.git'
     Bundle 'jamessan/vim-gnupg'
     Bundle 'merlinrebrovic/focus.vim'
-    Bundle 'mhinz/vim-signify'
-    Bundle 'itchyny/lightline.vim'
+
+    if ! isRestricted
+        Bundle 'mhinz/vim-signify'
+        Bundle 'itchyny/lightline.vim'
+    endif
+
     Bundle 'mattn/webapi-vim'
     Bundle 'mattn/gist-vim'
     Bundle 'stephpy/vim-yaml'
@@ -89,6 +99,10 @@ set shiftwidth=8
 set shiftround
 set copyindent
 set pastetoggle=<F6>
+
+if isRestricted
+    set showmode
+endif
 
 " Backups
 set nobackup
