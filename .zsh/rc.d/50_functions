@@ -184,4 +184,15 @@ Specify a directory to yank as an argument."
 
 }
 
+# Remove SSH host fingerprint from ~/.ssh/known_hosts and connect to that host
+function re-ssh() {
+    local host="${1}"
+    if [ -n "${host}" ] ; then
+        ssh-keygen -R ${host}
+        ssh "${@}"
+    else
+        echo "Error: no host specified" && exit 1
+    fi
+}
+
 # vim:ft=zsh
