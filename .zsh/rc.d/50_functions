@@ -187,8 +187,14 @@ Specify a directory to yank as an argument."
 # Remove SSH host fingerprint from ~/.ssh/known_hosts and connect to that host
 function re-ssh() {
     local host="${1}"
+
+    host_names=( ${host} $(dig +short A ${host}) $(dig +short AAAA ${host}) )
+
     if [ -n "${host}" ] ; then
-        ssh-keygen -R ${host}
+        for address in ${host_names[@]} ; do
+            ssh-keygen -R ${address}
+        done
+
         ssh "${@}"
     else
         echo "Error: no host specified" && exit 1
