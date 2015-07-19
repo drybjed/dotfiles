@@ -65,8 +65,8 @@ color index		cyan		default '~P' # mails from me
 color index		white		default '~p' # mails to me
 color index		brightcyan	default '~G' # PGP
 color index		white		default '~Q' # responses
-color index		brightwhite	default '~N' # new
-color index		brightwhite	default '~O' # old
+color index		white		default '~N' # new
+color index		white		default '~O' # old
 color index		blue		default '~u' # subscribed mailing lists
 color index		red		default '~H sa' # Touched by SpamAssassin
 color index		red		default '~C [Uu]ndisclosed.*[Rr]ecipients'
