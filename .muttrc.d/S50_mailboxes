@@ -1,0 +1,32 @@
+# Configuration of a standardized Maildir mailbox
+
+# Point to a mailbox using "set folder". Mailboxes can be managed using mbsync
+#set folder = "~/.Mail/example.org/account/"
+
+# New mail
+set spoolfile = +INBOX
+
+# Drafts
+set postponed = +Drafts
+
+# Don't record any messages; instead add Bcc: header pointing to your mail
+# address. This helps with encrypting GPG messages, since only recipients will
+# be able to read the encrypted message. And you want to be one of the
+# recipients.
+unset record
+set copy = no
+
+# List of mailboxes to check for new mail
+mailboxes +INBOX +Archive +Junk +Sent +Drafts
+
+# Move messages to +Archive folder using Ctrl+a
+macro index \ca "<tag-prefix><save-message>+Archive<Enter>" "Save message to Archive"
+macro pager \ca "<save-message>+Archive<Enter>" "Save message to Archive"
+
+# Move current message to +Archive folder using a
+macro pager a "<save-message>+Archive<Enter>" "Save message to Archive"
+
+# Move messages to +Junk folder using Ctrl+u
+macro index \cu "<tag-prefix><save-message>+Junk<Enter>" "Save message to Junk"
+macro pager \cu "<save-message>+Junk<Enter>" "Save message to Junk"
+
