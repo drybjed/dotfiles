@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# mm - mutt manager
+# Simple profile manager for mutt
+
+# Copyright (C) 2015 Maciej Delmanowski <drybjed@gmail.com>
+
+# mm is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# mm is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+
+
+script="$(basename $0)"
+arg="${1}"
+
+if [[ ${script} == *.* ]]; then
+
+    # Check if script is named like mm.profile
+    profile="$(basename $0 | cut -d. -f2)"
+
+else
+
+    # No profile in script name, grab it from argument list
+    if [ -n "${arg}" ] && [[ ${arg} != *@* ]] && [[ ${arg} != *-* ]] ; then
+        profile="${arg}"
+        shift
+    fi
+fi
+
+# Profile still not selected, load the default from ~/.mmrc
+if [ -z "${profile}" ] ; then
+    if [ -r ~/.config/mmrc ] ; then
+        source ~/.config/mmrc
+    elif [ -r ~/.mmrc ] ; then
+        source ~/.mmrc
+    fi
+fi
+
+if [ -z "${profile}" ] ; then
+    echo "Error No profile selected" && exit 1
+fi
+
+if [ -r ~/.muttrc.${profile} ] ; then
+    exec mutt -F ~/.muttrc.${profile} "${@}"
+elif [ -r ~/.muttrcr-${profile} ] ; then
+    exec mutt -F ~/.muttrc-${profile} "${@}"
+elif [ -r ~/.muttrcr_${profile} ] ; then
+    exec mutt -F ~/.muttrc_${profile} "${@}"
+elif [ -r ~/.mutt/${profile} ] ; then
+    exec mutt -F ~/.mutt/${profile} "${@}"
+elif [ -r ~/.mutt/${profile}.profile ] ; then
+    exec mutt -F ~/.mutt/${profile}.profile "${@}"
+else
+    echo "Error: No profile named '${profile}' found" && exit 1
+fi
+
