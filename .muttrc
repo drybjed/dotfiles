@@ -1,13 +1,26 @@
-#
 # Mutt configuration file
-# Since 2009,  maethor <maethor@subiron.org>
-#
-#  This file is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY
-#
 
-# $Id$
+# Reset all variables
+reset all
+
+# Set mailbox location
+set folder = "~/.Mail/local"
 
 # Sourcing all executable files into $HOME/.muttrc.d
 source "/bin/run-parts --test $HOME/.muttrc.d | xargs cat |"
+
+# Alternative email addresses for this profile
+#alternates -group my-mail account\@example\.org
+
+# Custom From and Bcc headers
+#my_hdr From: My Name <account@example.org>
+#my_hdr Bcc account@example.org
+
+# Download this profile mail using mbsync
+#macro index,pager Y '<shell-escape>mbsync profile<enter>'
+
+# Use msmtp to send mail
+#set sendmail = "/usr/bin/msmtp -d"
+#set use_from = yes
+#set use_envelope_from = yes
 
