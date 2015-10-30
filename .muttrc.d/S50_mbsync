@@ -1,0 +1,5 @@
+# mbsync
+
+macro index,pager Y '<shell-escape>test -n "$MUTT_PROFILE" && mbsync $MUTT_PROFILE || mbsync -a<enter>'
+
+# vim:ft=muttrc

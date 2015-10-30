@@ -3,4 +3,19 @@
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
+# Move messages to +Archive folder using Ctrl+a
+macro index \ca "<tag-prefix><save-message>+Archive<Enter>" "Save message to Archive"
+macro pager \ca "<save-message>+Archive<Enter>" "Save message to Archive"
+macro pager a "<tag-prefix><save-message>+Archive<Enter>" "Save message to Archive"
+
+# Move current message to +Archive folder using a
+macro pager a "<save-message>+Archive<Enter>" "Save message to Archive"
+
+# Move messages to +Junk folder using Ctrl+u
+macro index \cu "<tag-prefix><save-message>+Junk<Enter>" "Save message to Junk"
+macro pager \cu "<save-message>+Junk<Enter>" "Save message to Junk"
+
+# Group reply
+bind index,pager R group-reply
+
 # vim:ft=muttrc

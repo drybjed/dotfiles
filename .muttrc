@@ -6,21 +6,19 @@ reset all
 # Set mailbox location
 set folder = "~/.Mail/local"
 
-# Sourcing all executable files into $HOME/.muttrc.d
+# Load the custom profile selected on the command line
+source `[ -f ~/.muttrc.profile.$MUTT_PROFILE ] && echo "~/.muttrc.profile.$MUTT_PROFILE" || echo "/dev/null"`
+
+
+# Example profile: ~/.muttrc.profile.example
+
+# set folder = "~/.Mail/example.org/example"
+# alternates -group example user\@example.org
+# my_hdr From: Example User <user@example.org>
+# my_hdr Bcc: user@example.org
+# set signature = "~/.signature.example.org"
+
+
+# Source all executable files from $HOME/.muttrc.d
 source "/bin/run-parts --test $HOME/.muttrc.d | xargs cat |"
-
-# Alternative email addresses for this profile
-#alternates -group my-mail account\@example\.org
-
-# Custom From and Bcc headers
-#my_hdr From: My Name <account@example.org>
-#my_hdr Bcc account@example.org
-
-# Download this profile mail using mbsync
-#macro index,pager Y '<shell-escape>mbsync profile<enter>'
-
-# Use msmtp to send mail
-#set sendmail = "/usr/bin/msmtp -d"
-#set use_from = yes
-#set use_envelope_from = yes
 
