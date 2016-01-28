@@ -1,7 +1,7 @@
 ## .dotfiles
 
 Here you can find a set of configuration files for various programs (zsh, vim,
-apt, tmux, ...).  They are used on the Debian Linux distribution and mostly
+apt, tmux, ...).  They are used on Debian GNU/Linux distribution and mostly
 work out of the box. You can use them both on your user and root accounts.
 
 This version of my dotfiles is currently in its infancy, I'm planning to add
