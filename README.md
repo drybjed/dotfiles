@@ -20,7 +20,7 @@ more things as I go. Stay tuned.
 
 Currently there is no install script. Just `git clone
 https://github.com/drybjed/dotfiles.git` in a directory of your choice and symlink
-files in your $HOME as needed. Some of these files, like those in `apt/`
+files in your `$HOME` as needed. Some of these files, like those in `apt/`
 directory should go elsewhere, for ex. `/etc/apt/`. YMMV.
 
 ### Thanks
