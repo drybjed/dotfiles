@@ -1,7 +1,7 @@
 ## .dotfiles
 
 Here you can find a set of configuration files for various programs (zsh, vim,
-apt, tmux, ...).  They are used on the Debian Linux distribution and mostly
+apt, tmux, ...).  They are used on Debian GNU/Linux and mostly
 work out of the box. You can use them both on your user and root accounts.
 
 This version of my dotfiles is currently in its infancy, I'm planning to add
@@ -19,8 +19,8 @@ more things as I go. Stay tuned.
 ### Installation
 
 Currently there is no install script. Just `git clone
-git://github.com/drybjed/dotfiles/` in a directory of your choice and symlink
-files in your $HOME as needed. Some of these files, like those in `apt/`
+https://github.com/drybjed/dotfiles.git` in a directory of your choice and symlink
+files in your `$HOME` as needed. Some of these files, like those in `apt/`
 directory should go elsewhere, for ex. `/etc/apt/`. YMMV.
 
 ### Thanks
