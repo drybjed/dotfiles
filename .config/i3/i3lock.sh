@@ -12,7 +12,7 @@ xset s on
 xset s 30
 xset s blank
 
-i3lock --nofork --color=#111111 --image=${tmp}/locked.png.blur
+i3lock --dpms --nofork --color=#111111 --image=${tmp}/locked.png.blur
 
 # Disable screen saver
 xset s off
