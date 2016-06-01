@@ -54,7 +54,7 @@ gui: xresources i3
 	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
 
 smartcard:
-	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
+	@ansible-playbook -i ansible/inventory ansible/playbooks/smartcard.yml
 
 vim: $(VIM)
 

@@ -1,7 +1,7 @@
 ---
 
 - hosts: localhost
-  sudo: True
+  become: True
 
   tasks:
 
@@ -25,8 +25,10 @@
         state: 'absent'
 
     - name: Make sure that ~/.gnupg/gpg-agent.conf exists
-      command: touch ~/.gnupg/gpg-agent.conf creates=~/.gnupg/gpg-agent.conf
-      sudo: False
+      command: touch ~/.gnupg/gpg-agent.conf
+      args:
+        creates: '~/.gnupg/gpg-agent.conf'
+      become: False
 
     - name: Enable ssh support in gpg-agent
       lineinfile:
@@ -34,5 +36,5 @@
         regexp: '^enable-ssh-support'
         line: 'enable-ssh-support'
         state: 'present'
-      sudo: False
+      become: False
 
