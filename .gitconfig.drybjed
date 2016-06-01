@@ -1,7 +1,11 @@
 [user]
 	name = Maciej Delmanowski
-	email = drybjed@gmail.com
+	email = drybjed@drybjed.net
+	signingkey = drybjed@drybjed.net
 
 [github]
 	user = drybjed
+
+[commit]
+        gpgsign = true
 
