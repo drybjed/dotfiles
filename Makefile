@@ -50,7 +50,7 @@ install: git mutt tmux vim zsh mc gpg bin
 
 owner: install vim-vundle gui smartcard newsbeuter
 
-gui: xresources i3
+gui: xresources i3 dunst
 	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
 
 smartcard:
@@ -93,6 +93,11 @@ i3:
 	@mkdir -p ~/.config
 	@test -e ~/.config/i3 || \
 		${LINK} $(CURDIR)/.config/i3 ~/.config/i3
+
+dunst:
+	@mkdir -p ~/.config
+	@test -e ~/.config/dunst || \
+		${LINK} $(CURDIR)/.config/dunst ~/.config/dunst
 
 newsbeuter:
 	@mkdir -p ~/.local/share/newsbeuter

@@ -5,8 +5,8 @@
 
   vars:
     gui_packages: [ 'i3', 'i3lock', 'i3status', 'suckless-tools',
-                    'scrot', 'feh', 'imagemagick', 'vlc',
-                    'fonts-inconsolata', 'xfonts-terminus' ]
+                    'scrot', 'feh', 'imagemagick', 'vlc', 'dunst',
+                    'fonts-inconsolata', 'xfonts-terminus', 'libnotify-bin' ]
 
     cli_packages: [ 'newsbeuter', 'pass', 'uptimed', 'nmap', 'whois',
                     'bind9-host', 'weechat-curses' ]

@@ -21,6 +21,9 @@ exec --no-startup-id xset s off
 # Start nm-applet if present
 exec --no-startup-id type nm-applet && nm-applet
 
+# Start dunst if present
+exec --no-startup-id type dunst && dunst
+
 # Set random wallpaper from ~/.local/share/wallpapers/ if present
 exec --no-startup-id test ! -d ~/.local/share/wallpapers || (sleep 1 ; feh --bg-fill --randomize ~/.local/share/wallpapers)
 
