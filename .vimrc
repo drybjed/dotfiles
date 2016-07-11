@@ -186,9 +186,12 @@ if has ("autocmd")
 	endf
 	autocmd BufWritePost * call ChmodScripts()
 
-	" Trim blank lines at the end of files on save.
+	" Trim blank lines at the end of files on save if there is only
+	" one empty line at the end.
+	" Add multiple empty lines to avoid them getting trimmed.
+	" Ref: https://github.com/drybjed/dotfiles/pull/2#issuecomment-231701424
 	" https://stackoverflow.com/questions/7495932/how-can-i-trim-blank-lines-at-the-end-of-file-in-vim
-	autocmd BufWritePre * KeepView silent! %s#\($\n\s*\)\+\%$##
+	autocmd BufWritePre * KeepView silent! %s#\([^\s]\)\($\n\s*\)\{1\}\%$#\1#
 
 endif					" }}}1
 
