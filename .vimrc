@@ -50,7 +50,9 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle "nginx.vim"
     Bundle "openvpn"
     Bundle "snipMate"
-    Bundle "anwolib"
+
+    " Enable when you enable "Trim blank lines"
+    " Bundle "anwolib"
     " }}}
 
 endif " }}}
@@ -191,7 +193,8 @@ if has ("autocmd")
 	" Add multiple empty lines to avoid them getting trimmed.
 	" Ref: https://github.com/drybjed/dotfiles/pull/2#issuecomment-231701424
 	" https://stackoverflow.com/questions/7495932/how-can-i-trim-blank-lines-at-the-end-of-file-in-vim
-	autocmd BufWritePre * KeepView silent! %s#\([^\s]\)\($\n\s*\)\{1\}\%$#\1#
+	" Disabled as this could have side effects.
+	" autocmd BufWritePre * KeepView silent! %s#\([^\s]\)\($\n\s*\)\{1\}\%$#\1#
 
 endif					" }}}1
 
