@@ -40,6 +40,7 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle 'Rykka/riv.vim'
     Bundle 'wannesm/wmgraphviz.vim'
     Bundle "kien/ctrlp.vim"
+    Bundle "scrooloose/nerdtree"
 
     " github.com/vim-scripts repositories
     "Bundle "css_color.vim"
@@ -274,6 +275,16 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(pyc)$',
 	\ }
+
+" Split navigation {{{1
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Better split ordering {{{1
+set splitbelow
+set splitright
 
 " System clipboard integration {{{1
 " Yank selection to system clipboard
