@@ -181,7 +181,9 @@ if has ("autocmd")
 	function! ChmodScripts()
 		if getline(1) =~ "^#!"
 			if getline(1) =~ "/bin/"
-				silent !chmod +x <afile>
+				if expand('%:e') != 'jinja' && expand('%:e') != 'j2'
+					silent !chmod +x <afile>
+				endif
 			endif
 		endif
 	endf
