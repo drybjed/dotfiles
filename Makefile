@@ -85,9 +85,8 @@ gpg:
 	@test -e ~/.gnupg/gpg.conf || $(LINK) $(CURDIR)/.gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 bin:
-	@mkdir -p ~/.local
-	@test -e ~/.local/bin || \
-		${LINK} $(CURDIR)/.local/bin ~/.local/bin
+	@mkdir -p ~/.local/bin
+	@for i in $(CURDIR)/.local/bin/* ; do [ -e ~/.local/bin/$$(basename $$i) ] || ln -s $$(readlink -f $$i) ~/.local/bin/$$(basename $$i) ; done
 
 i3:
 	@mkdir -p ~/.config
