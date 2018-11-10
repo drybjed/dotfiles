@@ -18,10 +18,14 @@ more things as I go. Stay tuned.
 
 ### Installation
 
-Currently there is no install script. Just `git clone
-https://github.com/drybjed/dotfiles.git` in a directory of your choice and symlink
-files in your `$HOME` as needed. Some of these files, like those in `apt/`
-directory should go elsewhere, for ex. `/etc/apt/`. YMMV.
+```Shell
+git clone https://github.com/drybjed/dotfiles.git
+make all
+```
+
+Or use [`debops.users`](http://galaxy.ansible.com/debops/users) :wink:
+
+Some of these files, like those in `apt/` directory should go elsewhere, for ex. `/etc/apt/`. YMMV.
 
 ### Thanks
 
@@ -32,3 +36,4 @@ repository. If you find your code without proper credit, let me know.
 * GRML Team - http://grml.org/
 * Joshua T. Corbin - https://github.com/jcorbin
 * Wynn Netherland - https://github.com/pengwynn
+* Robin `ypid` Schneider - http://github.com/ypid

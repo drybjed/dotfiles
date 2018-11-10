@@ -28,7 +28,7 @@ GIT_OWNER = ~/.gitconfig.$(OWNER)
 
 MUTT = ~/.muttrc ~/.muttrc.d
 
-VIM = ~/.vimrc
+VIM = ~/.vimrc ~/.vim
 
 ZSH = ~/.zsh ~/.zshenv ~/.zlogin ~/.zlogout ~/.zshrc
 
@@ -44,11 +44,15 @@ OWNER_SYMLINKS = $(GIT_OWNER)
 
 # ---- Main Makefile ----
 
-all: install vim-vundle
+all: install
 
-install: git mutt tmux vim zsh mc gpg bin
+install: get-depends git mutt tmux vim zsh mc gpg bin
 
-owner: install vim-vundle gui smartcard newsbeuter
+get-depends:
+	git submodule sync
+	git submodule update --init --recursive
+
+owner: install gui smartcard newsbeuter
 
 gui: xresources i3 dunst
 	@ansible-playbook -i ansible/inventory ansible/playbooks/gui.yml
@@ -67,14 +71,6 @@ mutt: $(MUTT) $(MUTT_OWNER)
 tmux: $(TMUX)
 
 xresources: $(XRESOURCES)
-
-vim-vundle:
-	@echo "Setting up vim bundles ... "
-	@mkdir -p ~/.vim/bundle
-	@test -d ~/.vim/bundle/vundle || \
-		(git clone --quiet https://github.com/gmarik/vundle.git \
-		~/.vim/bundle/vundle && \
-		vim +BundleInstall +qall)
 
 mc:
 	@mkdir -p ~/.config/mc
@@ -123,4 +119,3 @@ $(SYMLINKS):
 
 $(OWNER_SYMLINKS):
 	@test "$(USER)" = "$(OWNER)" && (test -h $@ || $(LINK) $(CURDIR)/$(patsubst $(HOME)/%,%,$@) $@) || true
-

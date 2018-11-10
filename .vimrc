@@ -52,6 +52,9 @@ if filereadable(expand("~/.vim/bundle/vundle/autoload/vundle.vim"))
     Bundle "nginx.vim"
     Bundle "openvpn"
     Bundle "snipMate"
+
+    " Enable when you enable "Trim blank lines"
+    " Bundle "anwolib"
     " }}}
 
 endif " }}}
@@ -74,7 +77,7 @@ set wildmode=list:longest,full
 set wildmenu
 set history=9999
 set mouse=a
-"set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+"set fillchars=vert:\ ,stl:\ ,stlnc:\
 set hidden
 set gdefault
 set scrolloff=2
@@ -188,6 +191,14 @@ if has ("autocmd")
 		endif
 	endf
 	autocmd BufWritePost * call ChmodScripts()
+
+	" Trim blank lines at the end of files on save if there is only
+	" one empty line at the end.
+	" Add multiple empty lines to avoid them getting trimmed.
+	" Ref: https://github.com/drybjed/dotfiles/pull/2#issuecomment-231701424
+	" https://stackoverflow.com/questions/7495932/how-can-i-trim-blank-lines-at-the-end-of-file-in-vim
+	" Disabled as this could have side effects.
+	" autocmd BufWritePre * KeepView silent! %s#\([^\s]\)\($\n\s*\)\{1\}\%$#\1#
 
 endif					" }}}1
 
