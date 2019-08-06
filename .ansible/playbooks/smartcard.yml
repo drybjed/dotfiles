@@ -1,34 +1,19 @@
 ---
 
 - hosts: localhost
-  become: True
 
   tasks:
 
     - name: Install packages required for smartcard support
-      apt:
-        name: '{{ item }}'
-        state: 'latest'
-        install_recommends: False
-      with_items: [ 'gnupg-agent', 'libpth20', 'pinentry-gtk2', 'libccid',
-                    'pcscd', 'scdaemon', 'libksba8' ]
-
-    - name: Disable standard ssh-agent in Xsession
-      lineinfile:
-        dest: '/etc/X11/Xsession.options'
-        regexp: '^use-ssh-agent'
-        state: 'absent'
-
-    - name: Purge gnome-keyring support
-      apt:
-        name: 'libpam-gnome-keyring'
-        state: 'absent'
+      package:
+        name: [ 'scdaemon' ]
+        state: 'present'
+      become: True
 
     - name: Make sure that ~/.gnupg/gpg-agent.conf exists
       command: touch ~/.gnupg/gpg-agent.conf
       args:
         creates: '~/.gnupg/gpg-agent.conf'
-      become: False
 
     - name: Enable ssh support in gpg-agent
       lineinfile:
@@ -36,5 +21,24 @@
         regexp: '^enable-ssh-support'
         line: 'enable-ssh-support'
         state: 'present'
-      become: False
 
+    # Based on: https://mlohr.com/gpg-agent-ssh-gnome/
+    - name: Create required configuration directory
+      file:
+        path: '~/.config/autostart'
+        state: 'directory'
+        mode: '0755'
+
+    - name: Copy system-wide gnome-keyring-ssh config to user directory
+      copy:
+        src: '/etc/xdg/autostart/gnome-keyring-ssh.desktop'
+        dest: '~/.config/autostart/gnome-keyring-ssh.desktop'
+        remote_src: True
+        force: False
+
+    - name: Disable SSH support in gnome-keyring
+      lineinfile:
+        dest: '~/.config/autostart/gnome-keyring-ssh.desktop'
+        regexp: '^Hidden='
+        line: 'Hidden=true'
+        state: 'present'
