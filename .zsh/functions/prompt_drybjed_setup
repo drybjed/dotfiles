@@ -127,6 +127,9 @@ function prompt_drybjed_setup() {
 	pc[path]='%{${fg_bold[blue]}%}'
 	pc[git]='magenta'
 	pc[shortpath]='default'
+	pc[ranger]='%{${fg_bold[cyan]}%}'
+	pc[rangerlevel]='%{${fg_bold[blue]}%}'
+	pc[mc]='%{${fg_bold[cyan]}%}'
 	pc[rc]='%{${fg_no_bold[red]}%}'
 	pc[root]='%{${fg_bold[red]}%}'
 	pc[%]='%{${fg_bold[default]}%}'
@@ -142,6 +145,8 @@ function prompt_drybjed_setup() {
 	#PROMPT+="$pc[punc].$pc[line]%l$pc[reset]"
 	[ -n "${SSH_CONNECTION}" ] && [ -n "${DISPLAY}" ] && PROMPT+="$pc[x11]+$pc[reset]"
 	PROMPT+=" $pc[path]%45<...<%\$(prompt_drybjed_gitpath)~%<<%(1/.$pc[punc]/.)"
+	[ -n "${RANGER_LEVEL}" ] && PROMPT+=" $pc[punc][$pc[ranger]ranger$pc[punc]:$pc[rangerlevel]${RANGER_LEVEL}$pc[punc]]$pc[reset]"
+	[ -n "${MC_SID}" ] && PROMPT+=" $pc[punc][$pc[mc]mc$pc[punc]]$pc[reset]"
 	PROMPT+="\$(prompt_drybjed_scm_branch)"
 	#PROMPT+="\$(prompt_drybjed_scm_commit_time)"
 	PROMPT+="%(1j. $pc[bg]bg$pc[reset].)"
